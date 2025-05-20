@@ -25,9 +25,9 @@ const Index = () => {
         
         <FeaturedDestinations />
         
-        <section className="py-12 bg-airbnb-light">
+        <section className="py-12 bg-airbnb-light dark:bg-gray-800">
           <div className="container-custom">
-            <div className="bg-white shadow-xl rounded-xl overflow-hidden">
+            <div className="bg-background shadow-xl rounded-xl overflow-hidden">
               <div className="md:flex">
                 <div className="md:w-1/2">
                   <img 
@@ -38,7 +38,7 @@ const Index = () => {
                 </div>
                 <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
                   <h2 className="text-3xl md:text-4xl font-bold mb-6">Anuncie seu imóvel no Airbnb</h2>
-                  <p className="text-lg text-gray-600 mb-8">
+                  <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
                     Você poderia ganhar até R$5.000/mês compartilhando seu espaço em São Paulo.
                   </p>
                   <button className="bg-gradient-to-r from-pink-500 to-airbnb-primary text-white font-medium py-3 px-6 rounded-lg hover:from-pink-600 hover:to-red-600 transition-all w-max">

@@ -10,7 +10,7 @@ const NotFound = () => {
 
   useEffect(() => {
     console.error(
-      "404 Error: Usuário tentou acessar rota não existente:",
+      "404 Erro: Usuário tentou acessar rota não existente:",
       location.pathname
     );
   }, [location.pathname]);
@@ -22,7 +22,7 @@ const NotFound = () => {
         <div className="text-center max-w-md px-4">
           <h1 className="text-6xl font-bold text-airbnb-primary mb-6">404</h1>
           <h2 className="text-2xl font-semibold mb-4">Página não encontrada</h2>
-          <p className="text-gray-600 mb-8">
+          <p className="text-gray-600 dark:text-gray-300 mb-8">
             Não conseguimos encontrar a página que você está procurando. A página pode ter sido removida ou está temporariamente indisponível.
           </p>
           <Link to="/">
