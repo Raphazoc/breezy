@@ -37,7 +37,7 @@ const Index = () => {
                   />
                 </div>
                 <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6">Anuncie seu imóvel no Airbnb</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-6">Anuncie seu imóvel no HospedaBem</h2>
                   <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
                     Você poderia ganhar até R$5.000/mês compartilhando seu espaço em São Paulo.
                   </p>

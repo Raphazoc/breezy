@@ -4,49 +4,49 @@ import { Separator } from "@/components/ui/separator";
 
 const Footer = () => {
   return (
-    <footer className="bg-white border-t mt-10">
+    <footer className="bg-white dark:bg-gray-900 border-t mt-10">
       <div className="container-custom py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="font-semibold mb-4">Support</h3>
+            <h3 className="font-semibold mb-4">Suporte</h3>
             <ul className="space-y-3">
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">Help Center</Link></li>
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">AirCover</Link></li>
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">Safety information</Link></li>
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">Supporting people with disabilities</Link></li>
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">Cancellation options</Link></li>
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">Report neighborhood concern</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Central de Ajuda</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">AirCover</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Informações de segurança</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Apoio a pessoas com deficiência</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Opções de cancelamento</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Comunicar problema no bairro</Link></li>
             </ul>
           </div>
           
           <div>
-            <h3 className="font-semibold mb-4">Community</h3>
+            <h3 className="font-semibold mb-4">Comunidade</h3>
             <ul className="space-y-3">
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">Disaster relief housing</Link></li>
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">Combating discrimination</Link></li>
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">Airbnb.org: disaster relief</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Acomodações para situações de emergência</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Combate à discriminação</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Airbnb.org: ajuda em desastres</Link></li>
             </ul>
           </div>
           
           <div>
-            <h3 className="font-semibold mb-4">Hosting</h3>
+            <h3 className="font-semibold mb-4">Hospedagem</h3>
             <ul className="space-y-3">
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">Airbnb your home</Link></li>
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">AirCover for Hosts</Link></li>
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">Hosting resources</Link></li>
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">Community forum</Link></li>
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">Responsible hosting</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Anuncie seu imóvel</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">AirCover para Anfitriões</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Recursos para anfitriões</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Fórum da comunidade</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Hospedagem responsável</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="font-semibold mb-4">Airbnb</h3>
             <ul className="space-y-3">
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">Newsroom</Link></li>
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">New features</Link></li>
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">Careers</Link></li>
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">Investors</Link></li>
-              <li><Link to="#" className="text-sm text-gray-600 hover:underline">Gift cards</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Sala de imprensa</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Novos recursos</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Carreiras</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Investidores</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Cartões de presente</Link></li>
             </ul>
           </div>
         </div>
@@ -55,14 +55,14 @@ const Footer = () => {
         
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="flex flex-col md:flex-row items-center gap-4 mb-4 md:mb-0">
-            <p className="text-sm text-gray-600">© 2025 Airbnb, Inc.</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">© 2025 Airbnb, Inc.</p>
             <div className="hidden md:flex gap-2">
               <span className="text-sm text-gray-400">·</span>
-              <Link to="#" className="text-sm text-gray-600 hover:underline">Privacy</Link>
+              <Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Privacidade</Link>
               <span className="text-sm text-gray-400">·</span>
-              <Link to="#" className="text-sm text-gray-600 hover:underline">Terms</Link>
+              <Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Termos</Link>
               <span className="text-sm text-gray-400">·</span>
-              <Link to="#" className="text-sm text-gray-600 hover:underline">Sitemap</Link>
+              <Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Mapa do site</Link>
             </div>
           </div>
           

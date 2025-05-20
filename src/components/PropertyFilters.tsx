@@ -32,19 +32,19 @@ const PropertyFilters = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
   
   return (
-    <div className="sticky top-[80px] z-40 bg-background pt-4 pb-4 border-b">
+    <div className="sticky top-[80px] z-40 bg-background pt-6 pb-6 border-b">
       <div className="container-custom">
         <div className="flex items-center justify-between">
           <div className="flex-1 overflow-x-auto hide-scrollbar">
             <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
-              <TabsList className="w-max space-x-2 bg-transparent">
+              <TabsList className="w-max space-x-4 bg-transparent">
                 {filterCategories.map((category) => (
                   <TabsTrigger
                     key={category.value}
                     value={category.value}
-                    className="flex flex-col items-center pt-2 pb-1 px-4 text-xs border-b-2 border-transparent data-[state=active]:border-black dark:data-[state=active]:border-white rounded-none"
+                    className="flex flex-col items-center pt-3 pb-2 px-6 text-sm border-b-2 border-transparent data-[state=active]:border-black dark:data-[state=active]:border-white rounded-none"
                   >
-                    <span className="text-lg mb-1">{category.icon}</span>
+                    <span className="text-2xl mb-2">{category.icon}</span>
                     <span className="whitespace-nowrap">{category.label}</span>
                   </TabsTrigger>
                 ))}
