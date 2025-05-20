@@ -28,15 +28,20 @@ const ThemeToggle = () => {
   return (
     <Button 
       variant="ghost" 
-      size="icon" 
       onClick={toggleTheme} 
-      className="rounded-full w-9 h-9"
+      className="flex items-center gap-2 px-3 py-2 rounded-full hover:bg-muted"
       aria-label="Alternar tema"
     >
       {theme === "light" ? (
-        <Moon className="h-5 w-5" />
+        <>
+          <Moon className="h-5 w-5" />
+          <span className="hidden sm:inline text-sm">Modo escuro</span>
+        </>
       ) : (
-        <Sun className="h-5 w-5" />
+        <>
+          <Sun className="h-5 w-5" />
+          <span className="hidden sm:inline text-sm">Modo claro</span>
+        </>
       )}
     </Button>
   );

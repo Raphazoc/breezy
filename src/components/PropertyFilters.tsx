@@ -32,12 +32,12 @@ const PropertyFilters = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
   
   return (
-    <div className="sticky top-[80px] z-40 bg-background pt-6 pb-6 border-b">
+    <div className="sticky top-[80px] z-40 bg-background py-8 border-b">
       <div className="container-custom">
         <div className="flex items-center justify-between">
           <div className="flex-1 overflow-x-auto hide-scrollbar">
             <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
-              <TabsList className="w-max space-x-4 bg-transparent">
+              <TabsList className="w-max space-x-6 bg-transparent">
                 {filterCategories.map((category) => (
                   <TabsTrigger
                     key={category.value}

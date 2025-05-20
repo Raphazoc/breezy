@@ -1,9 +1,11 @@
 
+import { useState } from "react";
 import Header from "@/components/Header";
 import PropertyFilters from "@/components/PropertyFilters";
 import PropertyCard from "@/components/PropertyCard";
 import FeaturedDestinations from "@/components/FeaturedDestinations";
 import Footer from "@/components/Footer";
+import Map from "@/components/Map";
 import { properties } from "@/data/properties";
 
 const Index = () => {
@@ -47,6 +49,13 @@ const Index = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="py-12 bg-background">
+          <div className="container-custom">
+            <h2 className="text-3xl font-bold mb-8">Encontre hospedagens pelo mapa</h2>
+            <Map className="w-full shadow-lg border" />
           </div>
         </section>
       </main>
