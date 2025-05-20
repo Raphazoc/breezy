@@ -11,28 +11,28 @@ import {
 import { Button } from "@/components/ui/button";
 import { Filter } from "lucide-react";
 
-// Define filter categories
+// Define categorias de filtros
 const filterCategories = [
-  { value: "amazing-views", label: "Amazing views", icon: "🏞️" },
-  { value: "beachfront", label: "Beachfront", icon: "🏖️" },
-  { value: "cabins", label: "Cabins", icon: "🏡" },
+  { value: "vistas-incriveis", label: "Vistas incríveis", icon: "🏞️" },
+  { value: "beira-mar", label: "Beira-mar", icon: "🏖️" },
+  { value: "cabanas", label: "Cabanas", icon: "🏡" },
   { value: "design", label: "Design", icon: "🎨" },
-  { value: "countryside", label: "Countryside", icon: "🌄" },
-  { value: "mansions", label: "Mansions", icon: "🏰" },
+  { value: "campo", label: "Campo", icon: "🌄" },
+  { value: "mansoes", label: "Mansões", icon: "🏰" },
   { value: "tropical", label: "Tropical", icon: "🌴" },
-  { value: "iconic-cities", label: "Iconic cities", icon: "🏙️" },
-  { value: "trending", label: "Trending", icon: "🔥" },
-  { value: "luxe", label: "Luxe", icon: "✨" },
-  { value: "historical", label: "Historical", icon: "🏛️" },
+  { value: "cidades-iconicas", label: "Cidades icônicas", icon: "🏙️" },
+  { value: "em-alta", label: "Em alta", icon: "🔥" },
+  { value: "luxo", label: "Luxo", icon: "✨" },
+  { value: "historico", label: "Histórico", icon: "🏛️" },
   { value: "camping", label: "Camping", icon: "⛺" },
 ];
 
 const PropertyFilters = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>("amazing-views");
+  const [selectedCategory, setSelectedCategory] = useState<string>("vistas-incriveis");
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
   
   return (
-    <div className="sticky top-[80px] z-40 bg-white pt-4 pb-4">
+    <div className="sticky top-[80px] z-40 bg-white pt-4 pb-4 border-b">
       <div className="container-custom">
         <div className="flex items-center justify-between">
           <div className="flex-1 overflow-x-auto hide-scrollbar">
@@ -57,12 +57,12 @@ const PropertyFilters = () => {
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm" className="border rounded-lg flex items-center gap-2">
                   <Filter className="h-4 w-4" />
-                  <span>Filters</span>
+                  <span>Filtros</span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-[280px] p-6">
                 <div>
-                  <h3 className="font-medium text-lg mb-4">Price range</h3>
+                  <h3 className="font-medium text-lg mb-4">Faixa de preço</h3>
                   <div className="mb-6">
                     <Slider
                       defaultValue={[0, 1000]}
@@ -73,38 +73,38 @@ const PropertyFilters = () => {
                     />
                     <div className="flex items-center justify-between">
                       <div className="border rounded-lg p-2 w-[120px]">
-                        <div className="text-xs text-gray-500">min price</div>
-                        <div>${priceRange[0]}</div>
+                        <div className="text-xs text-gray-500">preço mínimo</div>
+                        <div>R$ {priceRange[0]}</div>
                       </div>
                       <span className="w-4 h-[1px] bg-gray-300"></span>
                       <div className="border rounded-lg p-2 w-[120px]">
-                        <div className="text-xs text-gray-500">max price</div>
-                        <div>${priceRange[1]}</div>
+                        <div className="text-xs text-gray-500">preço máximo</div>
+                        <div>R$ {priceRange[1]}</div>
                       </div>
                     </div>
                   </div>
                   
-                  <h3 className="font-medium text-lg mb-4">Property type</h3>
+                  <h3 className="font-medium text-lg mb-4">Tipo de propriedade</h3>
                   <div className="grid grid-cols-2 gap-2 mb-6">
-                    {["House", "Apartment", "Guesthouse", "Hotel"].map((type) => (
+                    {["Casa", "Apartamento", "Pousada", "Hotel"].map((type) => (
                       <button
                         key={type}
                         className="border rounded-xl p-4 text-left hover:border-black transition-colors"
                       >
                         <div className="h-6 w-6 mb-6 text-lg">
-                          {type === "House" ? "🏠" : type === "Apartment" ? "🏢" : type === "Guesthouse" ? "🏡" : "🏨"}
+                          {type === "Casa" ? "🏠" : type === "Apartamento" ? "🏢" : type === "Pousada" ? "🏡" : "🏨"}
                         </div>
                         <div className="font-medium">{type}</div>
                       </button>
                     ))}
                   </div>
                   
-                  <h3 className="font-medium text-lg mb-4">Rooms and beds</h3>
+                  <h3 className="font-medium text-lg mb-4">Quartos e camas</h3>
                   <div className="mb-6">
                     <div className="flex items-center mb-4">
-                      <span className="flex-1">Bedrooms</span>
+                      <span className="flex-1">Quartos</span>
                       <div className="flex space-x-2">
-                        {["Any", "1", "2", "3", "4", "5+"].map((num) => (
+                        {["Qualquer", "1", "2", "3", "4", "5+"].map((num) => (
                           <button 
                             key={num} 
                             className="w-8 h-8 rounded-full border hover:border-black flex items-center justify-center text-sm"
@@ -116,9 +116,9 @@ const PropertyFilters = () => {
                     </div>
                     
                     <div className="flex items-center">
-                      <span className="flex-1">Beds</span>
+                      <span className="flex-1">Camas</span>
                       <div className="flex space-x-2">
-                        {["Any", "1", "2", "3", "4", "5+"].map((num) => (
+                        {["Qualquer", "1", "2", "3", "4", "5+"].map((num) => (
                           <button 
                             key={num} 
                             className="w-8 h-8 rounded-full border hover:border-black flex items-center justify-center text-sm"
@@ -131,8 +131,8 @@ const PropertyFilters = () => {
                   </div>
                   
                   <div className="flex justify-between">
-                    <Button variant="outline" className="underline">Clear all</Button>
-                    <Button className="bg-black hover:bg-black/80 text-white">Show places</Button>
+                    <Button variant="outline" className="underline">Limpar tudo</Button>
+                    <Button className="bg-black hover:bg-black/80 text-white">Mostrar lugares</Button>
                   </div>
                 </div>
               </DropdownMenuContent>

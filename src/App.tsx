@@ -7,6 +7,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import PropertyDetail from "./pages/PropertyDetail";
 import NotFound from "./pages/NotFound";
+import Host from "./pages/Host";
+import Favorites from "./pages/Favorites";
+import Profile from "./pages/Profile";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +22,9 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/property/:id" element={<PropertyDetail />} />
+          <Route path="/host" element={<Host />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

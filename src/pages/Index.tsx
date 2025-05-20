@@ -32,17 +32,17 @@ const Index = () => {
                 <div className="md:w-1/2">
                   <img 
                     src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1000" 
-                    alt="Airbnb your home" 
+                    alt="Anuncie seu imóvel" 
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6">Airbnb your home</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-6">Anuncie seu imóvel no Airbnb</h2>
                   <p className="text-lg text-gray-600 mb-8">
-                    You could earn up to $1,750/month by sharing your space in New York.
+                    Você poderia ganhar até R$5.000/mês compartilhando seu espaço em São Paulo.
                   </p>
                   <button className="bg-gradient-to-r from-pink-500 to-airbnb-primary text-white font-medium py-3 px-6 rounded-lg hover:from-pink-600 hover:to-red-600 transition-all w-max">
-                    Learn more
+                    Saiba mais
                   </button>
                 </div>
               </div>

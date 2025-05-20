@@ -29,7 +29,7 @@ const PropertyDetail = () => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    // Simulate loading property data
+    // Simular carregamento de dados da propriedade
     setTimeout(() => {
       const foundProperty = properties.find(p => p.id === id) || null;
       setProperty(foundProperty);
@@ -42,7 +42,7 @@ const PropertyDetail = () => {
       <div className="min-h-screen flex flex-col">
         <Header />
         <div className="flex-grow flex items-center justify-center">
-          <div className="animate-pulse">Loading property details...</div>
+          <div className="animate-pulse">Carregando detalhes da propriedade...</div>
         </div>
       </div>
     );
@@ -54,9 +54,9 @@ const PropertyDetail = () => {
         <Header />
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">
-            <h2 className="text-2xl font-semibold mb-4">Property not found</h2>
+            <h2 className="text-2xl font-semibold mb-4">Propriedade não encontrada</h2>
             <Link to="/" className="text-airbnb-primary hover:underline">
-              Return to home page
+              Voltar para a página inicial
             </Link>
           </div>
         </div>
@@ -77,7 +77,7 @@ const PropertyDetail = () => {
               <Star className="h-4 w-4 fill-current text-black" />
               <span className="ml-1 font-medium">{property.rating}</span>
               {property.reviewCount && (
-                <span className="text-gray-500 ml-1">({property.reviewCount} reviews)</span>
+                <span className="text-gray-500 ml-1">({property.reviewCount} avaliações)</span>
               )}
             </div>
             <span className="text-gray-500">·</span>
@@ -87,7 +87,7 @@ const PropertyDetail = () => {
           <div className="flex space-x-4">
             <button className="flex items-center space-x-1 hover:underline">
               <Share className="h-4 w-4" />
-              <span>Share</span>
+              <span>Compartilhar</span>
             </button>
             
             <button 
@@ -95,12 +95,12 @@ const PropertyDetail = () => {
               onClick={() => setIsFavorite(!isFavorite)}
             >
               <Heart className={`h-4 w-4 ${isFavorite ? 'fill-airbnb-primary text-airbnb-primary' : ''}`} />
-              <span>Save</span>
+              <span>Salvar</span>
             </button>
           </div>
         </div>
         
-        {/* Photo Gallery */}
+        {/* Galeria de Fotos */}
         <div className="relative mb-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-2 rounded-xl overflow-hidden">
             <div className="md:col-span-2 md:row-span-2">
@@ -135,76 +135,76 @@ const PropertyDetail = () => {
               <path d="M13 2V14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
               <path d="M3 8H13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
-            <span>Show all photos</span>
+            <span>Mostrar todas as fotos</span>
           </button>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="md:col-span-2">
-            {/* Property Info */}
+            {/* Informações da Propriedade */}
             <div className="flex justify-between items-center pb-6 border-b">
               <div>
                 <h2 className="text-xl font-semibold">
                   {property.host}
                 </h2>
                 <p className="text-gray-600">
-                  4 guests · 2 bedrooms · 3 beds · 2 baths
+                  4 hóspedes · 2 quartos · 3 camas · 2 banheiros
                 </p>
               </div>
               <div className="w-14 h-14 rounded-full overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200" 
-                  alt="Host" 
+                  alt="Anfitriã" 
                   className="w-full h-full object-cover"
                 />
               </div>
             </div>
             
-            {/* Features */}
+            {/* Características */}
             <div className="py-6 border-b space-y-6">
               <div className="flex items-start space-x-4">
                 <Home className="w-8 h-8 text-gray-500 mt-1" />
                 <div>
-                  <h3 className="font-semibold">Entire home</h3>
-                  <p className="text-gray-600">You'll have the property to yourself.</p>
+                  <h3 className="font-semibold">Casa inteira</h3>
+                  <p className="text-gray-600">Você terá a acomodação só para você.</p>
                 </div>
               </div>
               
               <div className="flex items-start space-x-4">
                 <MapPin className="w-8 h-8 text-gray-500 mt-1" />
                 <div>
-                  <h3 className="font-semibold">Great location</h3>
-                  <p className="text-gray-600">94% of recent guests gave the location a 5-star rating.</p>
+                  <h3 className="font-semibold">Ótima localização</h3>
+                  <p className="text-gray-600">94% dos hóspedes recentes deram 5 estrelas à localização.</p>
                 </div>
               </div>
               
               <div className="flex items-start space-x-4">
                 <Calendar className="w-8 h-8 text-gray-500 mt-1" />
                 <div>
-                  <h3 className="font-semibold">Free cancellation for 48 hours</h3>
-                  <p className="text-gray-600">Cancel before check-in on Nov 22 for a partial refund.</p>
+                  <h3 className="font-semibold">Cancelamento gratuito por 48 horas</h3>
+                  <p className="text-gray-600">Cancele antes do check-in em 22 de nov para reembolso parcial.</p>
                 </div>
               </div>
             </div>
             
-            {/* Description */}
+            {/* Descrição */}
             <div className="py-6 border-b">
               <p className="text-gray-700 leading-relaxed">
-                Experience the perfect coastal getaway in this stunning luxury home with breathtaking ocean views. This modern retreat features spacious living areas, high-end finishes, and direct access to a pristine beach.
+                Experimente a escapada costeira perfeita nesta deslumbrante casa de luxo com vistas incríveis para o oceano. Este refúgio moderno apresenta áreas de estar espaçosas, acabamentos de alta qualidade e acesso direto a uma praia intocada.
               </p>
               <p className="text-gray-700 leading-relaxed mt-4">
-                The property includes a gourmet kitchen, outdoor dining area, and a private pool overlooking the ocean. Wake up to the sound of waves and watch spectacular sunsets from your private terrace.
+                A propriedade inclui uma cozinha gourmet, área de refeições ao ar livre e uma piscina privativa com vista para o mar. Acorde com o som das ondas e assista a espetaculares pores do sol do seu terraço privativo.
               </p>
-              <button className="mt-4 font-semibold underline">Show more</button>
+              <button className="mt-4 font-semibold underline">Mostrar mais</button>
             </div>
             
-            {/* Amenities */}
+            {/* Comodidades */}
             <div className="py-6 border-b">
-              <h2 className="text-xl font-semibold mb-4">What this place offers</h2>
+              <h2 className="text-xl font-semibold mb-4">O que este lugar oferece</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
-                  "Kitchen", "Wifi", "Dedicated workspace", "Free parking",
-                  "Pool", "Hot tub", "TV", "Washer", "Air conditioning", "BBQ grill"
+                  "Cozinha", "Wi-Fi", "Espaço de trabalho", "Estacionamento gratuito",
+                  "Piscina", "Hidromassagem", "TV", "Máquina de lavar", "Ar-condicionado", "Churrasqueira"
                 ].map((amenity, index) => (
                   <div key={index} className="flex items-center">
                     <svg className="w-6 h-6 mr-4" viewBox="0 0 32 32" fill="none">
@@ -216,18 +216,18 @@ const PropertyDetail = () => {
                 ))}
               </div>
               <button className="mt-6 border border-gray-900 rounded-lg px-5 py-2 font-medium">
-                Show all 38 amenities
+                Mostrar todas as 38 comodidades
               </button>
             </div>
           </div>
           
-          {/* Booking Card */}
+          {/* Card de Reserva */}
           <div className="md:col-span-1">
             <Card className="sticky top-24 border rounded-xl shadow-lg p-6">
               <div className="flex justify-between items-start mb-6">
                 <div>
-                  <span className="text-xl font-semibold">${property.price}</span>
-                  <span className="text-gray-500"> night</span>
+                  <span className="text-xl font-semibold">R$ {property.price}</span>
+                  <span className="text-gray-500"> noite</span>
                 </div>
                 <div className="flex items-center">
                   <Star className="h-4 w-4 fill-current text-black" />
@@ -242,17 +242,17 @@ const PropertyDetail = () => {
                 <div className="grid grid-cols-2 divide-x">
                   <div className="p-3">
                     <div className="text-xs font-semibold">CHECK-IN</div>
-                    <div>11/22/2025</div>
+                    <div>22/11/2025</div>
                   </div>
                   <div className="p-3">
                     <div className="text-xs font-semibold">CHECKOUT</div>
-                    <div>11/27/2025</div>
+                    <div>27/11/2025</div>
                   </div>
                 </div>
                 <div className="border-t p-3">
-                  <div className="text-xs font-semibold">GUESTS</div>
+                  <div className="text-xs font-semibold">HÓSPEDES</div>
                   <div className="flex justify-between">
-                    <div>2 guests</div>
+                    <div>2 hóspedes</div>
                     <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
                       <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
@@ -261,41 +261,41 @@ const PropertyDetail = () => {
               </div>
               
               <Button className="w-full mt-4 h-12 bg-airbnb-primary hover:bg-airbnb-primary/90 text-white font-medium">
-                Reserve
+                Reservar
               </Button>
               
-              <div className="text-center mt-2 text-sm">You won't be charged yet</div>
+              <div className="text-center mt-2 text-sm">Você ainda não será cobrado</div>
               
               <div className="mt-6 space-y-4">
                 <div className="flex justify-between">
-                  <span className="underline">${property.price} x 5 nights</span>
-                  <span>${property.price * 5}</span>
+                  <span className="underline">R$ {property.price} x 5 noites</span>
+                  <span>R$ {property.price * 5}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="underline">Cleaning fee</span>
-                  <span>$85</span>
+                  <span className="underline">Taxa de limpeza</span>
+                  <span>R$ 185</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="underline">Service fee</span>
-                  <span>$125</span>
+                  <span className="underline">Taxa de serviço</span>
+                  <span>R$ 225</span>
                 </div>
               </div>
               
               <Separator className="my-4" />
               
               <div className="flex justify-between font-semibold">
-                <span>Total before taxes</span>
-                <span>${property.price * 5 + 85 + 125}</span>
+                <span>Total antes dos impostos</span>
+                <span>R$ {property.price * 5 + 185 + 225}</span>
               </div>
             </Card>
           </div>
         </div>
         
-        {/* Reviews Section */}
+        {/* Seção de Avaliações */}
         <div className="mt-8 pt-6 border-t">
           <div className="flex items-center mb-6">
             <Star className="h-5 w-5 fill-current text-black" />
-            <span className="ml-2 text-xl font-semibold">{property.rating} · {property.reviewCount} reviews</span>
+            <span className="ml-2 text-xl font-semibold">{property.rating} · {property.reviewCount} avaliações</span>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
@@ -305,50 +305,50 @@ const PropertyDetail = () => {
                   <div className="w-10 h-10 rounded-full overflow-hidden mr-3">
                     <img 
                       src={`https://i.pravatar.cc/150?img=${20 + index}`} 
-                      alt="Reviewer" 
+                      alt="Avaliador" 
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div>
-                    <p className="font-medium">Alex Johnson</p>
-                    <p className="text-gray-500 text-sm">October 2025</p>
+                    <p className="font-medium">Alexandre Silva</p>
+                    <p className="text-gray-500 text-sm">Outubro 2025</p>
                   </div>
                 </div>
                 <p className="text-gray-700">
-                  Beautiful place with an amazing view. The host was very responsive and accommodating. Would definitely stay here again when we come back to the area!
+                  Lugar incrível com uma vista maravilhosa. O anfitrião foi muito atencioso e prestativo. Com certeza ficaríamos aqui novamente quando voltarmos para a região!
                 </p>
               </div>
             ))}
           </div>
           
           <button className="mt-8 border border-gray-900 rounded-lg px-5 py-2 font-medium">
-            Show all {property.reviewCount} reviews
+            Mostrar todas as {property.reviewCount} avaliações
           </button>
         </div>
         
-        {/* Map Section */}
+        {/* Seção do Mapa */}
         <div className="mt-12 pt-6 border-t">
-          <h2 className="text-xl font-semibold mb-4">Where you'll be</h2>
+          <h2 className="text-xl font-semibold mb-4">Onde você ficará</h2>
           <div className="rounded-xl overflow-hidden h-96 bg-gray-200">
             <img 
               src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?q=80&w=1000" 
-              alt="Map" 
+              alt="Mapa" 
               className="w-full h-full object-cover"
             />
           </div>
           <div className="mt-4">
             <h3 className="font-medium mb-2">{property.location}</h3>
             <p className="text-gray-700">
-              The neighborhood is peaceful and located just minutes from downtown. You'll be close to restaurants, shopping, and local attractions.
+              O bairro é tranquilo e localizado a apenas alguns minutos do centro. Você estará próximo de restaurantes, lojas e atrações locais.
             </p>
-            <button className="mt-4 font-semibold underline">Show more</button>
+            <button className="mt-4 font-semibold underline">Mostrar mais</button>
           </div>
         </div>
       </main>
       
       <Footer />
       
-      {/* Photo Gallery Modal */}
+      {/* Modal de Galeria de Fotos */}
       <Dialog open={showAllPhotos} onOpenChange={setShowAllPhotos}>
         <DialogContent className="max-w-7xl w-full p-0">
           <div className="sticky top-0 z-10 bg-white p-4 flex justify-between items-center">
@@ -361,14 +361,14 @@ const PropertyDetail = () => {
             <div className="flex space-x-4">
               <button className="flex items-center space-x-1 hover:underline">
                 <Share className="h-4 w-4" />
-                <span>Share</span>
+                <span>Compartilhar</span>
               </button>
               <button 
                 className="flex items-center space-x-1 hover:underline"
                 onClick={() => setIsFavorite(!isFavorite)}
               >
                 <Heart className={`h-4 w-4 ${isFavorite ? 'fill-airbnb-primary text-airbnb-primary' : ''}`} />
-                <span>Save</span>
+                <span>Salvar</span>
               </button>
             </div>
           </div>

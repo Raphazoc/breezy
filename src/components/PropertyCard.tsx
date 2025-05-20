@@ -130,8 +130,8 @@ const PropertyCard = ({
         {distance && <p className="text-gray-500 text-sm">{distance}</p>}
         {dates && <p className="text-gray-500 text-sm">{dates}</p>}
         <p className="mt-1">
-          <span className="font-semibold">${price}</span>
-          <span className="text-gray-500"> night</span>
+          <span className="font-semibold">R$ {price}</span>
+          <span className="text-gray-500"> noite</span>
         </p>
       </div>
     </Link>
