@@ -1,0 +1,147 @@
+
+import { useState } from "react";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Slider } from "@/components/ui/slider";
+import { 
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+  DropdownMenuItem
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { Filter } from "lucide-react";
+
+// Define filter categories
+const filterCategories = [
+  { value: "amazing-views", label: "Amazing views", icon: "🏞️" },
+  { value: "beachfront", label: "Beachfront", icon: "🏖️" },
+  { value: "cabins", label: "Cabins", icon: "🏡" },
+  { value: "design", label: "Design", icon: "🎨" },
+  { value: "countryside", label: "Countryside", icon: "🌄" },
+  { value: "mansions", label: "Mansions", icon: "🏰" },
+  { value: "tropical", label: "Tropical", icon: "🌴" },
+  { value: "iconic-cities", label: "Iconic cities", icon: "🏙️" },
+  { value: "trending", label: "Trending", icon: "🔥" },
+  { value: "luxe", label: "Luxe", icon: "✨" },
+  { value: "historical", label: "Historical", icon: "🏛️" },
+  { value: "camping", label: "Camping", icon: "⛺" },
+];
+
+const PropertyFilters = () => {
+  const [selectedCategory, setSelectedCategory] = useState<string>("amazing-views");
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
+  
+  return (
+    <div className="sticky top-[80px] z-40 bg-white pt-4 pb-4">
+      <div className="container-custom">
+        <div className="flex items-center justify-between">
+          <div className="flex-1 overflow-x-auto hide-scrollbar">
+            <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
+              <TabsList className="w-max space-x-2 bg-transparent">
+                {filterCategories.map((category) => (
+                  <TabsTrigger
+                    key={category.value}
+                    value={category.value}
+                    className="flex flex-col items-center pt-2 pb-1 px-4 text-xs border-b-2 border-transparent data-[state=active]:border-black rounded-none"
+                  >
+                    <span className="text-lg mb-1">{category.icon}</span>
+                    <span className="whitespace-nowrap">{category.label}</span>
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </Tabs>
+          </div>
+          
+          <div className="ml-4">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm" className="border rounded-lg flex items-center gap-2">
+                  <Filter className="h-4 w-4" />
+                  <span>Filters</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-[280px] p-6">
+                <div>
+                  <h3 className="font-medium text-lg mb-4">Price range</h3>
+                  <div className="mb-6">
+                    <Slider
+                      defaultValue={[0, 1000]}
+                      max={1000}
+                      step={10}
+                      className="mb-6"
+                      onValueChange={(value: number[]) => setPriceRange([value[0], value[1]])}
+                    />
+                    <div className="flex items-center justify-between">
+                      <div className="border rounded-lg p-2 w-[120px]">
+                        <div className="text-xs text-gray-500">min price</div>
+                        <div>${priceRange[0]}</div>
+                      </div>
+                      <span className="w-4 h-[1px] bg-gray-300"></span>
+                      <div className="border rounded-lg p-2 w-[120px]">
+                        <div className="text-xs text-gray-500">max price</div>
+                        <div>${priceRange[1]}</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <h3 className="font-medium text-lg mb-4">Property type</h3>
+                  <div className="grid grid-cols-2 gap-2 mb-6">
+                    {["House", "Apartment", "Guesthouse", "Hotel"].map((type) => (
+                      <button
+                        key={type}
+                        className="border rounded-xl p-4 text-left hover:border-black transition-colors"
+                      >
+                        <div className="h-6 w-6 mb-6 text-lg">
+                          {type === "House" ? "🏠" : type === "Apartment" ? "🏢" : type === "Guesthouse" ? "🏡" : "🏨"}
+                        </div>
+                        <div className="font-medium">{type}</div>
+                      </button>
+                    ))}
+                  </div>
+                  
+                  <h3 className="font-medium text-lg mb-4">Rooms and beds</h3>
+                  <div className="mb-6">
+                    <div className="flex items-center mb-4">
+                      <span className="flex-1">Bedrooms</span>
+                      <div className="flex space-x-2">
+                        {["Any", "1", "2", "3", "4", "5+"].map((num) => (
+                          <button 
+                            key={num} 
+                            className="w-8 h-8 rounded-full border hover:border-black flex items-center justify-center text-sm"
+                          >
+                            {num}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center">
+                      <span className="flex-1">Beds</span>
+                      <div className="flex space-x-2">
+                        {["Any", "1", "2", "3", "4", "5+"].map((num) => (
+                          <button 
+                            key={num} 
+                            className="w-8 h-8 rounded-full border hover:border-black flex items-center justify-center text-sm"
+                          >
+                            {num}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-between">
+                    <Button variant="outline" className="underline">Clear all</Button>
+                    <Button className="bg-black hover:bg-black/80 text-white">Show places</Button>
+                  </div>
+                </div>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PropertyFilters;
