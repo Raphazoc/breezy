@@ -52,12 +52,7 @@ const Index = () => {
           </div>
         </section>
 
-        <section className="py-12 bg-background">
-          <div className="container-custom">
-            <h2 className="text-3xl font-bold mb-8">Encontre hospedagens pelo mapa</h2>
-            <Map className="w-full shadow-lg border" />
-          </div>
-        </section>
+        
       </main>
       
       <Footer />

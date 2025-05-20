@@ -1,12 +1,11 @@
-
 import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
-import { 
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-  DropdownMenuItem
+  DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Filter } from "lucide-react";
@@ -30,32 +29,38 @@ const filterCategories = [
 const PropertyFilters = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("vistas-incriveis");
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
-  
+
   return (
     <div className="sticky top-[80px] z-40 bg-background py-8 border-b">
       <div className="container-custom">
         <div className="flex items-center justify-between">
-          <div className="flex-1 overflow-x-auto hide-scrollbar">
+          <div className="flex-1 overflow-x-auto hide-scrollbar scroll-smooth">
             <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
-              <TabsList className="w-max space-x-6 bg-transparent">
+              <TabsList className="w-max space-x-6 bg-transparent h-[130px] px-2">
                 {filterCategories.map((category) => (
                   <TabsTrigger
                     key={category.value}
                     value={category.value}
-                    className="flex flex-col items-center pt-3 pb-2 px-6 text-sm border-b-2 border-transparent data-[state=active]:border-black dark:data-[state=active]:border-white rounded-none"
+                    className="flex flex-col items-center justify-center pt-3 pb-1 px-4 text-xs border-b-2 border-transparent data-[state=active]:border-black dark:data-[state=active]:border-white rounded-none flex-shrink-0 min-w-[80px] min-h-[130px]"
                   >
-                    <span className="text-2xl mb-2">{category.icon}</span>
-                    <span className="whitespace-nowrap">{category.label}</span>
+                    <span className="text-2xl mb-1">{category.icon}</span>
+                    <span className="text-center text-gray-700 dark:text-white">
+                      {category.label}
+                    </span>
                   </TabsTrigger>
                 ))}
               </TabsList>
             </Tabs>
           </div>
-          
+
           <div className="ml-4">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="border rounded-lg flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border rounded-lg flex items-center gap-2"
+                >
                   <Filter className="h-4 w-4" />
                   <span>Filtros</span>
                 </Button>
@@ -69,7 +74,9 @@ const PropertyFilters = () => {
                       max={1000}
                       step={10}
                       className="mb-6"
-                      onValueChange={(value: number[]) => setPriceRange([value[0], value[1]])}
+                      onValueChange={(value: number[]) =>
+                        setPriceRange([value[0], value[1]])
+                      }
                     />
                     <div className="flex items-center justify-between">
                       <div className="border rounded-lg p-2 w-[120px]">
@@ -83,7 +90,7 @@ const PropertyFilters = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <h3 className="font-medium text-lg mb-4">Tipo de propriedade</h3>
                   <div className="grid grid-cols-2 gap-2 mb-6">
                     {["Casa", "Apartamento", "Pousada", "Hotel"].map((type) => (
@@ -92,21 +99,27 @@ const PropertyFilters = () => {
                         className="border rounded-xl p-4 text-left hover:border-black dark:hover:border-white transition-colors"
                       >
                         <div className="h-6 w-6 mb-6 text-lg">
-                          {type === "Casa" ? "🏠" : type === "Apartamento" ? "🏢" : type === "Pousada" ? "🏡" : "🏨"}
+                          {type === "Casa"
+                            ? "🏠"
+                            : type === "Apartamento"
+                            ? "🏢"
+                            : type === "Pousada"
+                            ? "🏡"
+                            : "🏨"}
                         </div>
                         <div className="font-medium">{type}</div>
                       </button>
                     ))}
                   </div>
-                  
+
                   <h3 className="font-medium text-lg mb-4">Quartos e camas</h3>
                   <div className="mb-6">
                     <div className="flex items-center mb-4">
                       <span className="flex-1">Quartos</span>
                       <div className="flex space-x-2">
                         {["Qualquer", "1", "2", "3", "4", "5+"].map((num) => (
-                          <button 
-                            key={num} 
+                          <button
+                            key={num}
                             className="w-8 h-8 rounded-full border hover:border-black dark:hover:border-white flex items-center justify-center text-sm"
                           >
                             {num}
@@ -114,13 +127,13 @@ const PropertyFilters = () => {
                         ))}
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center">
                       <span className="flex-1">Camas</span>
                       <div className="flex space-x-2">
                         {["Qualquer", "1", "2", "3", "4", "5+"].map((num) => (
-                          <button 
-                            key={num} 
+                          <button
+                            key={num}
                             className="w-8 h-8 rounded-full border hover:border-black dark:hover:border-white flex items-center justify-center text-sm"
                           >
                             {num}
@@ -129,10 +142,14 @@ const PropertyFilters = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="flex justify-between">
-                    <Button variant="outline" className="underline">Limpar tudo</Button>
-                    <Button className="bg-black hover:bg-black/80 dark:bg-white dark:text-black dark:hover:bg-white/80 text-white">Mostrar lugares</Button>
+                    <Button variant="outline" className="underline">
+                      Limpar tudo
+                    </Button>
+                    <Button className="bg-black hover:bg-black/80 dark:bg-white dark:text-black dark:hover:bg-white/80 text-white">
+                      Mostrar lugares
+                    </Button>
                   </div>
                 </div>
               </DropdownMenuContent>
