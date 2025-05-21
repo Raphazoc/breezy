@@ -1,5 +1,6 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
@@ -11,14 +12,23 @@ import { useToast } from "@/hooks/use-toast";
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
+  reason?: "general" | "hostListing";
 }
 
-const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
+const AuthModal = ({ isOpen, onClose, reason = "general" }: AuthModalProps) => {
   const [activeTab, setActiveTab] = useState<"login" | "register">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const { toast } = useToast();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // If the modal is opened for hosting, start on the register tab
+    if (reason === "hostListing" && isOpen) {
+      setActiveTab("register");
+    }
+  }, [reason, isOpen]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,11 +38,21 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
         title: "Login efetuado",
         description: "Você foi conectado com sucesso."
       });
+      
+      // If login was triggered by clicking "host", redirect to host page
+      if (reason === "hostListing") {
+        navigate("/host");
+      }
     } else {
       toast({
         title: "Conta criada",
         description: "Sua conta foi criada com sucesso."
       });
+      
+      // If registration was triggered by clicking "host", redirect to host page
+      if (reason === "hostListing") {
+        navigate("/host");
+      }
     }
     
     onClose();
@@ -43,7 +63,8 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-center text-xl font-semibold">
-            {activeTab === "login" ? "Entrar na sua conta" : "Criar uma conta"}
+            {reason === "hostListing" ? "Cadastre-se para anunciar seu espaço" : 
+              activeTab === "login" ? "Entrar na sua conta" : "Criar uma conta"}
           </DialogTitle>
           <Button
             variant="ghost"
@@ -85,7 +106,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                 />
               </div>
               <Button type="submit" className="w-full bg-airbnb-primary hover:bg-airbnb-primary/90">
-                Entrar
+                {reason === "hostListing" ? "Entrar e anunciar" : "Entrar"}
               </Button>
             </form>
           </TabsContent>
@@ -126,7 +147,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                 />
               </div>
               <Button type="submit" className="w-full bg-airbnb-primary hover:bg-airbnb-primary/90">
-                Criar conta
+                {reason === "hostListing" ? "Cadastrar e anunciar" : "Criar conta"}
               </Button>
             </form>
           </TabsContent>

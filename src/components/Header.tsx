@@ -1,20 +1,15 @@
 
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Search, User, MapPin } from "lucide-react";
+import { Search, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import ThemeToggle from "./ThemeToggle";
 import AuthModal from "./AuthModal";
 
 const Header = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [authReason, setAuthReason] = useState<"general" | "hostListing">("general");
   const navigate = useNavigate();
 
   const handleSearch = (e: React.FormEvent) => {
@@ -24,8 +19,20 @@ const Header = () => {
     }
   };
 
+  const handleHostClick = () => {
+    // Check if user is logged in (in a real app, you would check auth state)
+    const isLoggedIn = false; // This would be from your auth context/state
+    
+    if (!isLoggedIn) {
+      setAuthReason("hostListing");
+      setIsAuthModalOpen(true);
+    } else {
+      navigate("/host");
+    }
+  };
+
   return (
-    <header className="bg-background border-b py-3">
+    <header className="bg-background border-b py-2">
       <div className="container-custom flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center">
@@ -34,12 +41,12 @@ const Header = () => {
         </Link>
 
         {/* Search Bar - Center */}
-        <form onSubmit={handleSearch} className="max-w-md w-full mx-4">
+        <form onSubmit={handleSearch} className="max-w-xs w-full mx-4">
           <div className="relative">
             <input
               type="text"
               placeholder="Buscar destinos, propriedades..."
-              className="w-full py-2 px-4 pr-10 border rounded-full text-sm focus:outline-none focus:ring-1 focus:ring-airbnb-primary"
+              className="w-full py-1.5 px-4 pr-10 border rounded-full text-sm focus:outline-none focus:ring-1 focus:ring-airbnb-primary text-foreground"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -47,7 +54,7 @@ const Header = () => {
               type="submit" 
               className="absolute right-1 top-1/2 -translate-y-1/2 bg-airbnb-primary text-white p-1.5 rounded-full hover:bg-red-600 transition-colors"
             >
-              <Search className="h-3.5 w-3.5" />
+              <Search className="h-3 w-3" />
             </button>
           </div>
         </form>
@@ -57,9 +64,9 @@ const Header = () => {
           <Button
             variant="ghost"
             className="hidden md:flex text-xs hover:bg-muted"
-            asChild
+            onClick={handleHostClick}
           >
-            <Link to="/host">Anuncie seu espaço</Link>
+            Anuncie seu espaço
           </Button>
           
           <ThemeToggle />
@@ -68,16 +75,20 @@ const Header = () => {
             variant="outline"
             className="flex items-center gap-1 rounded-full border-gray-300 p-1.5"
             size="sm"
-            onClick={() => setIsAuthModalOpen(true)}
+            onClick={() => {
+              setAuthReason("general");
+              setIsAuthModalOpen(true);
+            }}
           >
-            <User className="h-4 w-4" />
+            Entrar
           </Button>
         </div>
       </div>
       
       <AuthModal 
         isOpen={isAuthModalOpen} 
-        onClose={() => setIsAuthModalOpen(false)} 
+        onClose={() => setIsAuthModalOpen(false)}
+        reason={authReason}
       />
     </header>
   );

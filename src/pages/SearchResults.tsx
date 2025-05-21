@@ -2,158 +2,86 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import Header from "@/components/Header";
-import PropertyFilters from "@/components/PropertyFilters";
 import PropertyCard from "@/components/PropertyCard";
 import Footer from "@/components/Footer";
+import PropertyFilters from "@/components/PropertyFilters";
 import { properties } from "@/data/properties";
-import { Button } from "@/components/ui/button";
-import { Slider } from "@/components/ui/slider";
-
-type FilterOptions = {
-  priceMin: number;
-  priceMax: number;
-  propertyType: string | null;
-};
 
 const SearchResults = () => {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q") || "";
-  
-  const [filters, setFilters] = useState<FilterOptions>({
-    priceMin: 0,
-    priceMax: 1000,
-    propertyType: null,
-  });
-  
   const [filteredProperties, setFilteredProperties] = useState(properties);
-  const [showFilters, setShowFilters] = useState(false);
-  
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+
+  // Filter properties based on search query
   useEffect(() => {
-    // Filtragem baseada na consulta e nos filtros 
-    const result = properties.filter((property) => {
-      const searchTerm = query.toLowerCase();
-      const matchesSearch = (
-        property.title.toLowerCase().includes(searchTerm) ||
-        property.location.toLowerCase().includes(searchTerm)
-      );
+    const filtered = properties.filter((property) => {
+      const searchTerms = query.toLowerCase().split(" ");
+      const propertyText = `${property.name} ${property.location} ${property.categoryName || ""}`.toLowerCase();
       
-      const matchesPrice = property.price >= filters.priceMin && property.price <= filters.priceMax;
-      
-      const matchesType = !filters.propertyType || property.category === filters.propertyType;
-      
-      return matchesSearch && matchesPrice && matchesType;
+      return searchTerms.every(term => propertyText.includes(term));
     });
     
-    setFilteredProperties(result);
-  }, [query, filters]);
+    setFilteredProperties(filtered);
+  }, [query]);
+
+  // Apply additional category filter if selected
+  const applyFilter = (filter: string) => {
+    if (activeFilter === filter) {
+      // If clicking the active filter, remove it
+      setActiveFilter(null);
+      setFilteredProperties(
+        properties.filter((property) => {
+          const searchTerms = query.toLowerCase().split(" ");
+          const propertyText = `${property.name} ${property.location} ${property.categoryName || ""}`.toLowerCase();
+          
+          return searchTerms.every(term => propertyText.includes(term));
+        })
+      );
+    } else {
+      // Apply the new filter
+      setActiveFilter(filter);
+      setFilteredProperties(
+        properties.filter((property) => {
+          const searchTerms = query.toLowerCase().split(" ");
+          const propertyText = `${property.name} ${property.location} ${property.categoryName || ""}`.toLowerCase();
+          
+          const matchesSearch = searchTerms.every(term => propertyText.includes(term));
+          const matchesFilter = property.categoryName?.toLowerCase() === filter.toLowerCase();
+          
+          return matchesSearch && matchesFilter;
+        })
+      );
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <PropertyFilters />
+      <PropertyFilters activeFilter={activeFilter} onFilterChange={applyFilter} />
       
-      <main className="flex-grow">
-        <section className="py-6">
-          <div className="container-custom">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h1 className="text-2xl font-bold mb-2">
-                  Resultados para "{query}"
-                </h1>
-                <p className="text-muted-foreground">
-                  {filteredProperties.length} propriedades encontradas
-                </p>
-              </div>
-              
-              <Button 
-                variant="outline" 
-                onClick={() => setShowFilters(!showFilters)}
-                className="flex items-center gap-2"
-              >
-                {showFilters ? "Ocultar filtros" : "Mais filtros"}
-              </Button>
+      <main className="flex-grow py-6">
+        <div className="container-custom">
+          <h1 className="text-2xl font-bold mb-4">
+            {query ? `Resultados para "${query}"` : "Todas as propriedades"}
+            {activeFilter && ` em ${activeFilter}`}
+          </h1>
+          
+          {filteredProperties.length === 0 ? (
+            <div className="text-center py-12">
+              <h2 className="text-xl font-medium mb-2">Nenhuma propriedade encontrada</h2>
+              <p className="text-muted-foreground">
+                Tente ajustar sua busca ou explorar outras categorias.
+              </p>
             </div>
-            
-            {showFilters && (
-              <div className="bg-muted p-4 rounded-lg mb-6 animate-fade-in">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div>
-                    <h3 className="font-medium mb-3">Faixa de preço</h3>
-                    <Slider
-                      defaultValue={[filters.priceMin, filters.priceMax]}
-                      max={1000}
-                      step={10}
-                      className="mb-2"
-                      onValueChange={(value: number[]) => 
-                        setFilters(prev => ({
-                          ...prev, 
-                          priceMin: value[0], 
-                          priceMax: value[1]
-                        }))
-                      }
-                    />
-                    <div className="flex justify-between text-sm">
-                      <span>R${filters.priceMin}</span>
-                      <span>R${filters.priceMax}</span>
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <h3 className="font-medium mb-3">Tipo de propriedade</h3>
-                    <div className="grid grid-cols-2 gap-2">
-                      {["Casa", "Apartamento", "Pousada", "Hotel"].map((type) => (
-                        <button
-                          key={type}
-                          className={`border px-4 py-2 rounded-md text-center transition-colors ${
-                            filters.propertyType === type.toLowerCase() 
-                              ? "bg-airbnb-primary text-white" 
-                              : "hover:bg-muted-foreground/10"
-                          }`}
-                          onClick={() => setFilters(prev => ({
-                            ...prev,
-                            propertyType: prev.propertyType === type.toLowerCase() ? null : type.toLowerCase()
-                          }))}
-                        >
-                          {type}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-end">
-                    <Button 
-                      variant="outline" 
-                      className="mr-2"
-                      onClick={() => setFilters({
-                        priceMin: 0,
-                        priceMax: 1000,
-                        propertyType: null
-                      })}
-                    >
-                      Limpar filtros
-                    </Button>
-                    <Button className="bg-airbnb-primary hover:bg-airbnb-primary/90">
-                      Aplicar filtros
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            )}
-            
-            {filteredProperties.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {filteredProperties.map((property) => (
-                  <PropertyCard key={property.id} {...property} />
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-12">
-                <p className="text-xl">Nenhuma propriedade encontrada para "{query}".</p>
-                <p className="text-muted-foreground mt-2">Tente termos diferentes ou explore nossas categorias.</p>
-              </div>
-            )}
-          </div>
-        </section>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredProperties.map((property) => (
+                <PropertyCard key={property.id} {...property} />
+              ))}
+            </div>
+          )}
+        </div>
       </main>
       
       <Footer />
