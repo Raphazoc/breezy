@@ -2,15 +2,14 @@
 import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
+import { Button } from "@/components/ui/button";
+import { Filter } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-  DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import { Filter } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 // Define categorias de filtros
 const filterCategories = [
@@ -22,8 +21,6 @@ const filterCategories = [
   { value: "cidades-iconicas", label: "Cidades icônicas", icon: "🏙️" },
   { value: "em-alta", label: "Em alta", icon: "🔥" },
   { value: "luxo", label: "Luxo", icon: "✨" },
-  { value: "historico", label: "Histórico", icon: "🏛️" },
-  { value: "camping", label: "Camping", icon: "⛺" },
 ];
 
 const PropertyFilters = () => {
@@ -45,20 +42,20 @@ const PropertyFilters = () => {
   };
 
   return (
-    <div className="sticky top-[80px] z-40 bg-background py-8 border-b">
+    <div className="sticky top-[64px] z-40 bg-background py-4 border-b">
       <div className="container-custom">
-        <div className="mb-6">
+        <div className="mb-4">
           <form onSubmit={handleSearch} className="flex">
             <input
               type="text"
-              placeholder="Buscar destinos, propriedades, experiências..."
-              className="w-full p-3 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-airbnb-primary"
+              placeholder="Buscar destinos, propriedades..."
+              className="w-full p-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-airbnb-primary text-sm"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
             <button 
               type="submit" 
-              className="bg-airbnb-primary text-white p-3 rounded-r-lg hover:bg-red-600 transition-colors"
+              className="bg-airbnb-primary text-white p-2 rounded-r-lg hover:bg-red-600 transition-colors"
             >
               Buscar
             </button>
@@ -68,15 +65,15 @@ const PropertyFilters = () => {
         <div className="flex items-center justify-between">
           <div className="flex-1 overflow-x-auto hide-scrollbar scroll-smooth">
             <Tabs value={selectedCategory} onValueChange={handleCategoryChange}>
-              <TabsList className="w-max space-x-6 bg-transparent h-[150px] px-2">
+              <TabsList className="w-max space-x-4 bg-transparent h-[90px] px-2">
                 {filterCategories.map((category) => (
                   <TabsTrigger
                     key={category.value}
                     value={category.value}
-                    className="flex flex-col items-center justify-center pt-3 pb-1 px-4 text-xs border-b-2 border-transparent data-[state=active]:border-black dark:data-[state=active]:border-white rounded-none flex-shrink-0 min-w-[100px] min-h-[150px]"
+                    className="flex flex-col items-center justify-center pt-2 pb-1 px-3 text-xs border-b-2 border-transparent data-[state=active]:border-black dark:data-[state=active]:border-white rounded-none flex-shrink-0 min-w-[80px] h-[90px]"
                   >
-                    <span className="text-4xl mb-1">{category.icon}</span>
-                    <span className="text-center text-gray-700 dark:text-white mt-2">
+                    <span className="text-2xl mb-1">{category.icon}</span>
+                    <span className="text-center text-gray-700 dark:text-white mt-1 text-xs">
                       {category.label}
                     </span>
                   </TabsTrigger>
@@ -142,37 +139,6 @@ const PropertyFilters = () => {
                         <div className="font-medium">{type}</div>
                       </button>
                     ))}
-                  </div>
-
-                  <h3 className="font-medium text-lg mb-4">Quartos e camas</h3>
-                  <div className="mb-6">
-                    <div className="flex items-center mb-4">
-                      <span className="flex-1">Quartos</span>
-                      <div className="flex space-x-2">
-                        {["Qualquer", "1", "2", "3", "4", "5+"].map((num) => (
-                          <button
-                            key={num}
-                            className="w-8 h-8 rounded-full border hover:border-black dark:hover:border-white flex items-center justify-center text-sm"
-                          >
-                            {num}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="flex items-center">
-                      <span className="flex-1">Camas</span>
-                      <div className="flex space-x-2">
-                        {["Qualquer", "1", "2", "3", "4", "5+"].map((num) => (
-                          <button
-                            key={num}
-                            className="w-8 h-8 rounded-full border hover:border-black dark:hover:border-white flex items-center justify-center text-sm"
-                          >
-                            {num}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
                   </div>
 
                   <div className="flex justify-between">

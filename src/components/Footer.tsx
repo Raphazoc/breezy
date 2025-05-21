@@ -4,9 +4,9 @@ import { Separator } from "@/components/ui/separator";
 
 const Footer = () => {
   return (
-    <footer className="bg-white dark:bg-gray-900 border-t mt-10">
+    <footer className="bg-white dark:bg-gray-900 border-t mt-10 w-full">
       <div className="container-custom py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div>
             <h3 className="font-semibold mb-4">Suporte</h3>
             <ul className="space-y-3">
@@ -15,16 +15,15 @@ const Footer = () => {
               <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Informações de segurança</Link></li>
               <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Apoio a pessoas com deficiência</Link></li>
               <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Opções de cancelamento</Link></li>
-              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Comunicar problema no bairro</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="font-semibold mb-4">Comunidade</h3>
             <ul className="space-y-3">
-              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Acomodações para situações de emergência</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Acomodações para emergências</Link></li>
               <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Combate à discriminação</Link></li>
-              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Airbnb.org: ajuda em desastres</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Ajuda em desastres</Link></li>
             </ul>
           </div>
           
@@ -32,7 +31,7 @@ const Footer = () => {
             <h3 className="font-semibold mb-4">Hospedagem</h3>
             <ul className="space-y-3">
               <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Anuncie seu imóvel</Link></li>
-              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">AirCover para Anfitriões</Link></li>
+              <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Proteção para Anfitriões</Link></li>
               <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Recursos para anfitriões</Link></li>
               <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Fórum da comunidade</Link></li>
               <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Hospedagem responsável</Link></li>
@@ -40,7 +39,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="font-semibold mb-4">Airbnb</h3>
+            <h3 className="font-semibold mb-4">HospedaBem</h3>
             <ul className="space-y-3">
               <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Sala de imprensa</Link></li>
               <li><Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Novos recursos</Link></li>
@@ -55,7 +54,7 @@ const Footer = () => {
         
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="flex flex-col md:flex-row items-center gap-4 mb-4 md:mb-0">
-            <p className="text-sm text-gray-600 dark:text-gray-300">© 2025 Airbnb, Inc.</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">© 2025 HospedaBem, Inc.</p>
             <div className="hidden md:flex gap-2">
               <span className="text-sm text-gray-400">·</span>
               <Link to="#" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Privacidade</Link>

@@ -18,51 +18,51 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-background border-b">
-      <div className="container-custom flex items-center justify-between h-20">
+      <div className="container-custom flex items-center justify-between h-16">
         {/* Logo atualizado */}
         <Link to="/" className="flex items-center">
-          <MapPin className="h-8 w-8 text-airbnb-primary stroke-2" />
-          <span className="text-xl font-bold ml-2">hospedabem</span>
+          <MapPin className="h-6 w-6 text-airbnb-primary stroke-2" />
+          <span className="text-lg font-bold ml-2">hospedabem</span>
         </Link>
 
         {/* Search Bar (Medium and Large Screens) */}
-        <div className="hidden md:flex items-center border rounded-full p-1 px-2 shadow-sm hover:shadow-md transition-shadow duration-200">
-          <Button variant="link" className="text-sm font-medium">
+        <div className="hidden md:flex items-center border rounded-full p-1 px-2 shadow-sm hover:shadow-md transition-shadow duration-200 max-w-[400px]">
+          <Button variant="link" className="text-xs font-medium">
             Em qualquer lugar
           </Button>
           <div className="h-4 w-px bg-gray-300"></div>
-          <Button variant="link" className="text-sm font-medium">
+          <Button variant="link" className="text-xs font-medium">
             Qualquer semana
           </Button>
           <div className="h-4 w-px bg-gray-300"></div>
-          <Button variant="link" className="text-sm font-medium">
+          <Button variant="link" className="text-xs font-medium">
             Hóspedes
           </Button>
           <Button
             size="icon"
-            className="rounded-full bg-airbnb-primary text-white"
+            className="rounded-full bg-airbnb-primary text-white h-7 w-7"
           >
-            <Search className="h-4 w-4" />
+            <Search className="h-3 w-3" />
           </Button>
         </div>
 
-        {/* User Menu e Theme Toggle */}
-        <div className="flex items-center gap-4">
-          <ThemeToggle />
-          
+        {/* User Menu */}
+        <div className="flex items-center gap-2">
           <Button
             variant="ghost"
-            className="hidden md:flex items-center hover:bg-muted"
+            className="hidden md:flex items-center hover:bg-muted text-xs"
             asChild
           >
             <Link to="/host">Anuncie seu espaço</Link>
           </Button>
           
+          <ThemeToggle />
+          
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="outline"
-                className="flex items-center gap-2 rounded-full border-gray-300"
+                className="flex items-center gap-1 rounded-full border-gray-300"
                 size="sm"
               >
                 <Menu className="h-4 w-4" />

@@ -25,9 +25,9 @@ const SearchResults = () => {
       <PropertyFilters />
       
       <main className="flex-grow">
-        <section className="py-12">
+        <section className="py-8">
           <div className="container-custom">
-            <h1 className="text-3xl font-bold mb-2">
+            <h1 className="text-2xl font-bold mb-2">
               Resultados para "{query}"
             </h1>
             <p className="text-muted-foreground mb-8">

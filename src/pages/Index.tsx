@@ -5,7 +5,6 @@ import PropertyFilters from "@/components/PropertyFilters";
 import PropertyCard from "@/components/PropertyCard";
 import FeaturedDestinations from "@/components/FeaturedDestinations";
 import Footer from "@/components/Footer";
-import Map from "@/components/Map";
 import { properties } from "@/data/properties";
 
 const Index = () => {
@@ -27,7 +26,7 @@ const Index = () => {
         
         <FeaturedDestinations />
         
-        <section className="py-12 bg-airbnb-light dark:bg-gray-800">
+        <section className="py-8 bg-airbnb-light dark:bg-gray-800">
           <div className="container-custom">
             <div className="bg-background shadow-xl rounded-xl overflow-hidden">
               <div className="md:flex">
@@ -51,16 +50,6 @@ const Index = () => {
             </div>
           </div>
         </section>
-
-        <section className="py-12">
-          <div className="container-custom">
-            <h2 className="text-2xl font-bold mb-6">Explore nossos destinos no mapa</h2>
-            <div className="w-full h-[500px] rounded-xl overflow-hidden">
-              <Map />
-            </div>
-          </div>
-        </section>
-        
       </main>
       
       <Footer />
