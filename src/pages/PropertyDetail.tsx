@@ -14,7 +14,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const PropertyDetail = () => {
   const { id } = useParams();
-  const property = properties.find((p) => p.id === Number(id));
+  const property = properties.find((p) => p.id === Number(id || 0));
   const { toast } = useToast();
   const [favorited, setFavorited] = useState(false);
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -36,6 +36,11 @@ const PropertyDetail = () => {
       </div>
     );
   }
+
+  const maxGuests = property.guests || 4; // Valor padrão 4 se não existir
+  const reviews = property.reviews || 0; // Valor padrão 0 se não existir
+  const description = property.description || "Este lindo imóvel oferece uma estadia confortável e luxuosa. Desfrute de amenidades modernas e uma excelente localização, perfeita tanto para turistas quanto para viajantes a negócios.";
+  const imageUrl = property.imageUrl || property.image; // Usa imageUrl se existir, senão usa image
 
   const handleFavorite = () => {
     setFavorited(!favorited);
@@ -82,7 +87,7 @@ const PropertyDetail = () => {
                   <Star className="h-4 w-4 fill-current text-amber-500 mr-1" />
                   <span className="font-medium">{property.rating}</span>
                   <span className="mx-1">·</span>
-                  <span className="text-muted-foreground underline">{property.reviews} avaliações</span>
+                  <span className="text-muted-foreground underline">{reviews} avaliações</span>
                 </div>
                 <span className="text-muted-foreground">
                   {property.location}
@@ -112,7 +117,7 @@ const PropertyDetail = () => {
             <div className="lg:col-span-2">
               <div className="rounded-2xl overflow-hidden">
                 <img
-                  src={property.imageUrl}
+                  src={imageUrl}
                   alt={property.title}
                   className="w-full h-[400px] md:h-[500px] object-cover"
                 />
@@ -166,13 +171,13 @@ const PropertyDetail = () => {
                   id="guests" 
                   type="number" 
                   min={1} 
-                  max={property.maxGuests} 
+                  max={maxGuests} 
                   value={guests} 
                   onChange={(e) => setGuests(parseInt(e.target.value))}
                   className="mt-2"
                 />
                 <p className="text-xs text-muted-foreground mt-2">
-                  Máximo: {property.maxGuests} hóspedes
+                  Máximo: {maxGuests} hóspedes
                 </p>
               </div>
               
@@ -209,10 +214,7 @@ const PropertyDetail = () => {
               <div className="md:col-span-2">
                 <h2 className="text-2xl font-bold mb-4">Sobre este espaço</h2>
                 <div className="prose max-w-none">
-                  <p className="mb-4">
-                    {property.description || 
-                      "Este lindo imóvel oferece uma estadia confortável e luxuosa. Desfrute de amenidades modernas e uma excelente localização, perfeita tanto para turistas quanto para viajantes a negócios."}
-                  </p>
+                  <p className="mb-4">{description}</p>
                   <p>
                     Os hóspedes têm acesso a todas as comodidades, incluindo Wi-Fi de alta velocidade, 
                     cozinha totalmente equipada, área de lavanderia e uma piscina compartilhada.
@@ -307,7 +309,7 @@ const PropertyDetail = () => {
               ))}
             </div>
             <Button variant="outline" className="mt-4">
-              Mostrar todas as {property.reviews} avaliações
+              Mostrar todas as {reviews} avaliações
             </Button>
           </div>
         </div>

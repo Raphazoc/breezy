@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -10,6 +11,8 @@ import NotFound from "./pages/NotFound";
 import Host from "./pages/Host";
 import Favorites from "./pages/Favorites";
 import Profile from "./pages/Profile";
+import CategoryPage from "./pages/CategoryPage";
+import SearchResults from "./pages/SearchResults";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +43,8 @@ const App = () => {
             <Route path="/host" element={<Host />} />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/category/:categoryId" element={<CategoryPage />} />
+            <Route path="/search" element={<SearchResults />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

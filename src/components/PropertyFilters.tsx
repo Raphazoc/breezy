@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
@@ -9,15 +10,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Filter } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 // Define categorias de filtros
 const filterCategories = [
   { value: "vistas-incriveis", label: "Vistas incríveis", icon: "🏞️" },
   { value: "beira-mar", label: "Beira-mar", icon: "🏖️" },
   { value: "cabanas", label: "Cabanas", icon: "🏡" },
-  { value: "design", label: "Design", icon: "🎨" },
   { value: "campo", label: "Campo", icon: "🌄" },
-  { value: "mansoes", label: "Mansões", icon: "🏰" },
   { value: "tropical", label: "Tropical", icon: "🌴" },
   { value: "cidades-iconicas", label: "Cidades icônicas", icon: "🏙️" },
   { value: "em-alta", label: "Em alta", icon: "🔥" },
@@ -27,24 +27,56 @@ const filterCategories = [
 ];
 
 const PropertyFilters = () => {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<string>("vistas-incriveis");
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    navigate(`/category/${category}`);
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+    }
+  };
 
   return (
     <div className="sticky top-[80px] z-40 bg-background py-8 border-b">
       <div className="container-custom">
+        <div className="mb-6">
+          <form onSubmit={handleSearch} className="flex">
+            <input
+              type="text"
+              placeholder="Buscar destinos, propriedades, experiências..."
+              className="w-full p-3 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-airbnb-primary"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button 
+              type="submit" 
+              className="bg-airbnb-primary text-white p-3 rounded-r-lg hover:bg-red-600 transition-colors"
+            >
+              Buscar
+            </button>
+          </form>
+        </div>
+        
         <div className="flex items-center justify-between">
           <div className="flex-1 overflow-x-auto hide-scrollbar scroll-smooth">
-            <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
-              <TabsList className="w-max space-x-6 bg-transparent h-[130px] px-2">
+            <Tabs value={selectedCategory} onValueChange={handleCategoryChange}>
+              <TabsList className="w-max space-x-6 bg-transparent h-[150px] px-2">
                 {filterCategories.map((category) => (
                   <TabsTrigger
                     key={category.value}
                     value={category.value}
-                    className="flex flex-col items-center justify-center pt-3 pb-1 px-4 text-xs border-b-2 border-transparent data-[state=active]:border-black dark:data-[state=active]:border-white rounded-none flex-shrink-0 min-w-[80px] min-h-[130px]"
+                    className="flex flex-col items-center justify-center pt-3 pb-1 px-4 text-xs border-b-2 border-transparent data-[state=active]:border-black dark:data-[state=active]:border-white rounded-none flex-shrink-0 min-w-[100px] min-h-[150px]"
                   >
-                    <span className="text-2xl mb-1">{category.icon}</span>
-                    <span className="text-center text-gray-700 dark:text-white">
+                    <span className="text-4xl mb-1">{category.icon}</span>
+                    <span className="text-center text-gray-700 dark:text-white mt-2">
                       {category.label}
                     </span>
                   </TabsTrigger>
@@ -65,7 +97,7 @@ const PropertyFilters = () => {
                   <span>Filtros</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-[280px] p-6">
+              <DropdownMenuContent align="end" className="w-[280px] p-6 bg-background">
                 <div>
                   <h3 className="font-medium text-lg mb-4">Faixa de preço</h3>
                   <div className="mb-6">

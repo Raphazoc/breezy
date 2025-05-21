@@ -52,6 +52,14 @@ const Index = () => {
           </div>
         </section>
 
+        <section className="py-12">
+          <div className="container-custom">
+            <h2 className="text-2xl font-bold mb-6">Explore nossos destinos no mapa</h2>
+            <div className="w-full h-[500px] rounded-xl overflow-hidden">
+              <Map />
+            </div>
+          </div>
+        </section>
         
       </main>
       
