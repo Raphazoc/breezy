@@ -1,5 +1,4 @@
 
-import { useState } from "react";
 import Header from "@/components/Header";
 import PropertyFilters from "@/components/PropertyFilters";
 import PropertyCard from "@/components/PropertyCard";
@@ -14,8 +13,14 @@ const Index = () => {
       <PropertyFilters />
       
       <main className="flex-grow">
-        <section className="py-8">
+        <section className="py-6">
           <div className="container-custom">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold mb-2">Propriedades em destaque</h2>
+              <p className="text-muted-foreground">
+                Explore as melhores opções de hospedagem do Brasil
+              </p>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {properties.map((property) => (
                 <PropertyCard key={property.id} {...property} />

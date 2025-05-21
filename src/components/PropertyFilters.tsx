@@ -4,7 +4,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import { Filter } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,54 +25,29 @@ const filterCategories = [
 
 const PropertyFilters = () => {
   const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState<string>("vistas-incriveis");
+  const [searchParams] = useSearchParams();
+  const [selectedCategory, setSelectedCategory] = useState<string>(searchParams.get("category") || "vistas-incriveis");
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
-  const [searchQuery, setSearchQuery] = useState("");
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
     navigate(`/category/${category}`);
   };
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
-    }
-  };
-
   return (
-    <div className="sticky top-[64px] z-40 bg-background py-4 border-b">
+    <div className="bg-background py-2 border-b">
       <div className="container-custom">
-        <div className="mb-4">
-          <form onSubmit={handleSearch} className="flex">
-            <input
-              type="text"
-              placeholder="Buscar destinos, propriedades..."
-              className="w-full p-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-airbnb-primary text-sm"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <button 
-              type="submit" 
-              className="bg-airbnb-primary text-white p-2 rounded-r-lg hover:bg-red-600 transition-colors"
-            >
-              Buscar
-            </button>
-          </form>
-        </div>
-        
         <div className="flex items-center justify-between">
           <div className="flex-1 overflow-x-auto hide-scrollbar scroll-smooth">
             <Tabs value={selectedCategory} onValueChange={handleCategoryChange}>
-              <TabsList className="w-max space-x-4 bg-transparent h-[90px] px-2">
+              <TabsList className="w-max space-x-4 bg-transparent h-16 px-2">
                 {filterCategories.map((category) => (
                   <TabsTrigger
                     key={category.value}
                     value={category.value}
-                    className="flex flex-col items-center justify-center pt-2 pb-1 px-3 text-xs border-b-2 border-transparent data-[state=active]:border-black dark:data-[state=active]:border-white rounded-none flex-shrink-0 min-w-[80px] h-[90px]"
+                    className="flex flex-col items-center justify-center pt-2 pb-1 px-3 text-xs border-b-2 border-transparent data-[state=active]:border-black dark:data-[state=active]:border-white rounded-none flex-shrink-0 h-16"
                   >
-                    <span className="text-2xl mb-1">{category.icon}</span>
+                    <span className="text-xl mb-1">{category.icon}</span>
                     <span className="text-center text-gray-700 dark:text-white mt-1 text-xs">
                       {category.label}
                     </span>

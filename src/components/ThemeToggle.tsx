@@ -29,19 +29,14 @@ const ThemeToggle = () => {
     <Button 
       variant="ghost" 
       onClick={toggleTheme} 
-      className="flex items-center gap-2 px-3 py-2 rounded-full hover:bg-muted"
+      size="icon"
+      className="rounded-full w-8 h-8"
       aria-label="Alternar tema"
     >
       {theme === "light" ? (
-        <>
-          <Moon className="h-5 w-5" />
-          <span className="hidden sm:inline text-sm">Modo escuro</span>
-        </>
+        <Moon className="h-4 w-4" />
       ) : (
-        <>
-          <Sun className="h-5 w-5" />
-          <span className="hidden sm:inline text-sm">Modo claro</span>
-        </>
+        <Sun className="h-4 w-4" />
       )}
     </Button>
   );
