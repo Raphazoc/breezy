@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
-import { Toggle } from "./ui/toggle";
+import { Button } from "./ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const ThemeToggle = () => {
   const [theme, setTheme] = useState<"light" | "dark">("light");
@@ -26,21 +27,30 @@ const ThemeToggle = () => {
   };
 
   return (
-    <Toggle
-      pressed={theme === "dark"}
-      onPressedChange={toggleTheme}
-      aria-label="Alternar tema"
-      className="transition-all duration-200 ease-in-out"
-    >
-      {theme === "light" ? (
-        <Moon className="h-4 w-4" />
-      ) : (
-        <Sun className="h-4 w-4" />
-      )}
-      <span className="sr-only">
-        {theme === "light" ? "Modo escuro" : "Modo claro"}
-      </span>
-    </Toggle>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={toggleTheme}
+            className="rounded-full w-9 h-9 hover:bg-muted transition-all"
+          >
+            {theme === "light" ? (
+              <Moon className="h-[1.2rem] w-[1.2rem]" />
+            ) : (
+              <Sun className="h-[1.2rem] w-[1.2rem]" />
+            )}
+            <span className="sr-only">
+              {theme === "light" ? "Ativar modo escuro" : "Ativar modo claro"}
+            </span>
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>{theme === "light" ? "Modo escuro" : "Modo claro"}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 };
 

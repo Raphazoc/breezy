@@ -7,6 +7,15 @@ import Footer from "@/components/Footer";
 import PropertyFilters from "@/components/PropertyFilters";
 import { properties } from "@/data/properties";
 
+interface Property {
+  id: number;
+  name: string;
+  location: string;
+  price: number;
+  imageUrl: string;
+  categoryName?: string;
+}
+
 const SearchResults = () => {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q") || "";
@@ -17,7 +26,7 @@ const SearchResults = () => {
   useEffect(() => {
     const filtered = properties.filter((property) => {
       const searchTerms = query.toLowerCase().split(" ");
-      const propertyText = `${property.name} ${property.location} ${property.categoryName || ""}`.toLowerCase();
+      const propertyText = `${(property as any).name} ${property.location} ${(property as any).categoryName || ""}`.toLowerCase();
       
       return searchTerms.every(term => propertyText.includes(term));
     });
@@ -33,7 +42,7 @@ const SearchResults = () => {
       setFilteredProperties(
         properties.filter((property) => {
           const searchTerms = query.toLowerCase().split(" ");
-          const propertyText = `${property.name} ${property.location} ${property.categoryName || ""}`.toLowerCase();
+          const propertyText = `${(property as any).name} ${property.location} ${(property as any).categoryName || ""}`.toLowerCase();
           
           return searchTerms.every(term => propertyText.includes(term));
         })
@@ -44,10 +53,10 @@ const SearchResults = () => {
       setFilteredProperties(
         properties.filter((property) => {
           const searchTerms = query.toLowerCase().split(" ");
-          const propertyText = `${property.name} ${property.location} ${property.categoryName || ""}`.toLowerCase();
+          const propertyText = `${(property as any).name} ${property.location} ${(property as any).categoryName || ""}`.toLowerCase();
           
           const matchesSearch = searchTerms.every(term => propertyText.includes(term));
-          const matchesFilter = property.categoryName?.toLowerCase() === filter.toLowerCase();
+          const matchesFilter = (property as any).categoryName?.toLowerCase() === filter.toLowerCase();
           
           return matchesSearch && matchesFilter;
         })

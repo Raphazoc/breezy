@@ -7,10 +7,22 @@ import { Calendar } from "@/components/ui/calendar";
 import { properties } from "@/data/properties";
 import { Star, Wifi, Bath, BedDouble, Home, User, Check } from "lucide-react";
 
+interface Property {
+  id: number;
+  name: string;
+  location: string;
+  price: number;
+  imageUrl: string;
+  categoryName?: string;
+  guests: number;
+  rooms: number;
+  description?: string;
+}
+
 const PropertyDetail = () => {
   const { id } = useParams<{ id: string }>();
   // Convert the id parameter to number for comparison
-  const property = properties.find((p) => p.id === parseInt(id || "0"));
+  const property = properties.find((p) => p.id === parseInt(id || "0")) as Property | undefined;
 
   if (!property) {
     return (
@@ -206,4 +218,3 @@ const PropertyDetail = () => {
 };
 
 export default PropertyDetail;
-

@@ -5,6 +5,7 @@ import { Search, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
 import AuthModal from "./AuthModal";
+import { Input } from "@/components/ui/input";
 
 const Header = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -43,7 +44,7 @@ const Header = () => {
         {/* Search Bar - Center */}
         <form onSubmit={handleSearch} className="max-w-xs w-full mx-4">
           <div className="relative">
-            <input
+            <Input
               type="text"
               placeholder="Buscar destinos, propriedades..."
               className="w-full py-1.5 px-4 pr-10 border rounded-full text-sm focus:outline-none focus:ring-1 focus:ring-airbnb-primary text-foreground"
