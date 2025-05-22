@@ -23,7 +23,24 @@ const PropertyDetail = () => {
   const { id } = useParams<{ id: string }>();
   // Convert the id parameter to number for comparison
   const propertyId = parseInt(id || "0", 10);
-  const property = properties.find((p) => p.id === propertyId) as Property | undefined;
+  
+  // Find the property and correctly type-cast it
+  const foundProperty = properties.find((p) => p.id === propertyId);
+  
+  // Convert to the expected type or return undefined if not found
+  const property: Property | undefined = foundProperty 
+    ? {
+        id: foundProperty.id,
+        name: foundProperty.name || "",
+        location: foundProperty.location,
+        price: foundProperty.price,
+        imageUrl: foundProperty.imageUrl || "",
+        categoryName: foundProperty.categoryName,
+        guests: foundProperty.guests || 2,
+        rooms: foundProperty.rooms || 1,
+        description: foundProperty.description
+      }
+    : undefined;
 
   if (!property) {
     return (

@@ -1,5 +1,6 @@
 
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 import Header from "@/components/Header";
 import PropertyFilters from "@/components/PropertyFilters";
 import PropertyCard from "@/components/PropertyCard";
@@ -48,12 +49,18 @@ const CategoryPage = () => {
   const title = categoryTitles[categoryId] || "Categoria";
   const description = categoryDescriptions[categoryId] || "Explore nossas propriedades nesta categoria.";
   
+  const [activeFilter, setActiveFilter] = useState<string | null>(categoryId);
   const categoryProperties = getCategoryProperties(categoryId);
+
+  const handleFilterChange = (filter: string) => {
+    setActiveFilter(filter);
+    // In a real application, this would trigger a new data fetch with the selected filter
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <PropertyFilters />
+      <PropertyFilters activeFilter={activeFilter} onFilterChange={handleFilterChange} />
       
       <main className="flex-grow">
         <section className="py-12">

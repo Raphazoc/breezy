@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import Header from "@/components/Header";
 import PropertyFilters from "@/components/PropertyFilters";
 import PropertyCard from "@/components/PropertyCard";
@@ -7,10 +8,17 @@ import Footer from "@/components/Footer";
 import { properties } from "@/data/properties";
 
 const Index = () => {
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+
+  const handleFilterChange = (filter: string) => {
+    setActiveFilter(filter);
+    // In a real application, this would filter the properties based on the selected category
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <PropertyFilters />
+      <PropertyFilters activeFilter={activeFilter} onFilterChange={handleFilterChange} />
       
       <main className="flex-grow">
         <section className="py-6">

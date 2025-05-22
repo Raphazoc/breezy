@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
-import { Filter, ChevronDown, BedDouble, Bath, Wifi, Utensils, Car, Tv, Pool, Fan } from "lucide-react";
+import { Filter, ChevronDown, BedDouble, Bath, Wifi, Utensils, Car, Tv, Fan, Droplets } from "lucide-react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   DropdownMenu,
@@ -34,13 +34,13 @@ const amenities = [
   { id: "kitchen", label: "Cozinha completa", icon: Utensils },
   { id: "parking", label: "Estacionamento", icon: Car },
   { id: "tv", label: "TV / Netflix", icon: Tv },
-  { id: "pool", label: "Piscina", icon: Pool },
+  { id: "pool", label: "Piscina", icon: Droplets }, // Changed from Pool to Droplets
   { id: "ac", label: "Ar-condicionado", icon: Fan },
 ];
 
 interface PropertyFiltersProps {
-  activeFilter: string | null;
-  onFilterChange: (filter: string) => void;
+  activeFilter?: string | null;
+  onFilterChange?: (filter: string) => void;
 }
 
 const PropertyFilters = ({ activeFilter, onFilterChange }: PropertyFiltersProps) => {
@@ -55,7 +55,9 @@ const PropertyFilters = ({ activeFilter, onFilterChange }: PropertyFiltersProps)
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
-    onFilterChange(category);
+    if (onFilterChange) {
+      onFilterChange(category);
+    }
   };
 
   const handleAmenityChange = (amenityId: string, checked: boolean) => {
