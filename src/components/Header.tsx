@@ -1,11 +1,12 @@
 
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Search, MapPin } from "lucide-react";
+import { Search, MapPin, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
 import AuthModal from "./AuthModal";
 import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 
 const Header = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -32,6 +33,10 @@ const Header = () => {
     }
   };
 
+  const handleFilterClick = () => {
+    navigate("/filters");
+  };
+
   return (
     <header className="bg-background border-b py-2">
       <div className="container-custom flex items-center justify-between">
@@ -41,9 +46,9 @@ const Header = () => {
           <span className="text-lg font-medium ml-1">hospedabem</span>
         </Link>
 
-        {/* Search Bar - Center */}
-        <form onSubmit={handleSearch} className="max-w-xs w-full mx-4">
-          <div className="relative">
+        {/* Search Bar with Filter Button - Center */}
+        <form onSubmit={handleSearch} className="max-w-xs w-full mx-4 relative flex items-center">
+          <div className="relative flex-1">
             <Input
               type="text"
               placeholder="Buscar destinos, propriedades..."
@@ -58,6 +63,15 @@ const Header = () => {
               <Search className="h-3 w-3" />
             </button>
           </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleFilterClick}
+            className="ml-2 flex items-center gap-1 rounded-full border-gray-300 p-1.5 relative"
+          >
+            <Filter className="h-4 w-4" />
+            <span className="sr-only">Filtros</span>
+          </Button>
         </form>
 
         {/* User Menu */}

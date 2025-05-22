@@ -1,380 +1,128 @@
-
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Separator } from "@/components/ui/separator";
-import { ExternalLink, Mail, Phone, MapPin, Shield, Globe, HelpCircle, Home, Smartphone } from "lucide-react";
-
-const footerLinks = {
-  suporte: [
-    { label: "Central de Ajuda", url: "/help", icon: HelpCircle },
-    { label: "AirCover para hóspedes", url: "/aircover", icon: Shield },
-    { label: "Opções de cancelamento", url: "/cancellation", icon: ExternalLink },
-    { label: "Apoio à deficiência", url: "/accessibility", icon: HelpCircle },
-    { label: "Reporte problema", url: "/report", icon: ExternalLink },
-  ],
-  comunidade: [
-    { label: "Resposta à emergências", url: "/emergency", icon: Phone },
-    { label: "Contra discriminação", url: "/non-discrimination", icon: Shield },
-    { label: "Programa de referência", url: "/referrals", icon: ExternalLink },
-    { label: "HospedaBem.org", url: "/nonprofit", icon: Home },
-  ],
-  hospedagem: [
-    { label: "Anuncie seu espaço", url: "/host", icon: Home },
-    { label: "Proteção para anfitriões", url: "/host-protection", icon: Shield },
-    { label: "Recursos para anfitriões", url: "/host-resources", icon: ExternalLink },
-    { label: "Fórum da comunidade", url: "/community-forum", icon: ExternalLink },
-    { label: "Hospedagem responsável", url: "/responsible-hosting", icon: Shield },
-  ],
-  hospedabem: [
-    { label: "Novidades", url: "/news", icon: ExternalLink },
-    { label: "Novos recursos", url: "/features", icon: ExternalLink },
-    { label: "Carreiras", url: "/careers", icon: ExternalLink },
-    { label: "Investidores", url: "/investors", icon: ExternalLink },
-    { label: "Cartão presente", url: "/gift-cards", icon: ExternalLink },
-  ],
-};
-
-const linkTranslations = {
-  "pt-BR": {
-    suporte: {
-      title: "Suporte",
-      links: [
-        { label: "Central de Ajuda", url: "/help", icon: HelpCircle },
-        { label: "AirCover para hóspedes", url: "/aircover", icon: Shield },
-        { label: "Opções de cancelamento", url: "/cancellation", icon: ExternalLink },
-        { label: "Apoio à deficiência", url: "/accessibility", icon: HelpCircle },
-        { label: "Reporte problema", url: "/report", icon: ExternalLink },
-      ]
-    },
-    comunidade: {
-      title: "Comunidade",
-      links: [
-        { label: "Resposta à emergências", url: "/emergency", icon: Phone },
-        { label: "Contra discriminação", url: "/non-discrimination", icon: Shield },
-        { label: "Programa de referência", url: "/referrals", icon: ExternalLink },
-        { label: "HospedaBem.org", url: "/nonprofit", icon: Home },
-      ]
-    },
-    hospedagem: {
-      title: "Hospedagem",
-      links: [
-        { label: "Anuncie seu espaço", url: "/host", icon: Home },
-        { label: "Proteção para anfitriões", url: "/host-protection", icon: Shield },
-        { label: "Recursos para anfitriões", url: "/host-resources", icon: ExternalLink },
-        { label: "Fórum da comunidade", url: "/community-forum", icon: ExternalLink },
-        { label: "Hospedagem responsável", url: "/responsible-hosting", icon: Shield },
-      ]
-    },
-    hospedabem: {
-      title: "HospedaBem",
-      links: [
-        { label: "Novidades", url: "/news", icon: ExternalLink },
-        { label: "Novos recursos", url: "/features", icon: ExternalLink },
-        { label: "Carreiras", url: "/careers", icon: ExternalLink },
-        { label: "Investidores", url: "/investors", icon: ExternalLink },
-        { label: "Cartão presente", url: "/gift-cards", icon: ExternalLink },
-      ]
-    },
-    misc: {
-      privacy: "Privacidade",
-      terms: "Termos",
-      sitemap: "Mapa do site",
-      companyDetails: "Detalhes da empresa",
-    }
-  },
-  "en-US": {
-    suporte: {
-      title: "Support",
-      links: [
-        { label: "Help Center", url: "/help", icon: HelpCircle },
-        { label: "AirCover for guests", url: "/aircover", icon: Shield },
-        { label: "Cancellation options", url: "/cancellation", icon: ExternalLink },
-        { label: "Accessibility support", url: "/accessibility", icon: HelpCircle },
-        { label: "Report issue", url: "/report", icon: ExternalLink },
-      ]
-    },
-    comunidade: {
-      title: "Community",
-      links: [
-        { label: "Emergency response", url: "/emergency", icon: Phone },
-        { label: "Anti-discrimination", url: "/non-discrimination", icon: Shield },
-        { label: "Referral program", url: "/referrals", icon: ExternalLink },
-        { label: "HospedaBem.org", url: "/nonprofit", icon: Home },
-      ]
-    },
-    hospedagem: {
-      title: "Hosting",
-      links: [
-        { label: "List your space", url: "/host", icon: Home },
-        { label: "Host protection", url: "/host-protection", icon: Shield },
-        { label: "Host resources", url: "/host-resources", icon: ExternalLink },
-        { label: "Community forum", url: "/community-forum", icon: ExternalLink },
-        { label: "Responsible hosting", url: "/responsible-hosting", icon: Shield },
-      ]
-    },
-    hospedabem: {
-      title: "HospedaBem",
-      links: [
-        { label: "News", url: "/news", icon: ExternalLink },
-        { label: "New features", url: "/features", icon: ExternalLink },
-        { label: "Careers", url: "/careers", icon: ExternalLink },
-        { label: "Investors", url: "/investors", icon: ExternalLink },
-        { label: "Gift cards", url: "/gift-cards", icon: ExternalLink },
-      ]
-    },
-    misc: {
-      privacy: "Privacy",
-      terms: "Terms",
-      sitemap: "Sitemap",
-      companyDetails: "Company details",
-    }
-  },
-  "es": {
-    suporte: {
-      title: "Soporte",
-      links: [
-        { label: "Centro de ayuda", url: "/help", icon: HelpCircle },
-        { label: "AirCover para huéspedes", url: "/aircover", icon: Shield },
-        { label: "Opciones de cancelación", url: "/cancellation", icon: ExternalLink },
-        { label: "Apoyo a la discapacidad", url: "/accessibility", icon: HelpCircle },
-        { label: "Reportar problema", url: "/report", icon: ExternalLink },
-      ]
-    },
-    comunidade: {
-      title: "Comunidad",
-      links: [
-        { label: "Respuesta a emergencias", url: "/emergency", icon: Phone },
-        { label: "Contra discriminación", url: "/non-discrimination", icon: Shield },
-        { label: "Programa de referidos", url: "/referrals", icon: ExternalLink },
-        { label: "HospedaBem.org", url: "/nonprofit", icon: Home },
-      ]
-    },
-    hospedagem: {
-      title: "Hospedaje",
-      links: [
-        { label: "Anuncia tu espacio", url: "/host", icon: Home },
-        { label: "Protección para anfitriones", url: "/host-protection", icon: Shield },
-        { label: "Recursos para anfitriones", url: "/host-resources", icon: ExternalLink },
-        { label: "Foro de la comunidad", url: "/community-forum", icon: ExternalLink },
-        { label: "Hospedaje responsable", url: "/responsible-hosting", icon: Shield },
-      ]
-    },
-    hospedabem: {
-      title: "HospedaBem",
-      links: [
-        { label: "Novedades", url: "/news", icon: ExternalLink },
-        { label: "Nuevas características", url: "/features", icon: ExternalLink },
-        { label: "Carreras", url: "/careers", icon: ExternalLink },
-        { label: "Inversores", url: "/investors", icon: ExternalLink },
-        { label: "Tarjeta regalo", url: "/gift-cards", icon: ExternalLink },
-      ]
-    },
-    misc: {
-      privacy: "Privacidad",
-      terms: "Términos",
-      sitemap: "Mapa del sitio",
-      companyDetails: "Detalles de la empresa",
-    }
-  },
-  "fr": {
-    suporte: {
-      title: "Assistance",
-      links: [
-        { label: "Centre d'aide", url: "/help", icon: HelpCircle },
-        { label: "AirCover pour les voyageurs", url: "/aircover", icon: Shield },
-        { label: "Options d'annulation", url: "/cancellation", icon: ExternalLink },
-        { label: "Accessibilité", url: "/accessibility", icon: HelpCircle },
-        { label: "Signaler un problème", url: "/report", icon: ExternalLink },
-      ]
-    },
-    comunidade: {
-      title: "Communauté",
-      links: [
-        { label: "Réponse d'urgence", url: "/emergency", icon: Phone },
-        { label: "Contre la discrimination", url: "/non-discrimination", icon: Shield },
-        { label: "Programme de parrainage", url: "/referrals", icon: ExternalLink },
-        { label: "HospedaBem.org", url: "/nonprofit", icon: Home },
-      ]
-    },
-    hospedagem: {
-      title: "Hébergement",
-      links: [
-        { label: "Mettre son logement sur HospedaBem", url: "/host", icon: Home },
-        { label: "Protection des hôtes", url: "/host-protection", icon: Shield },
-        { label: "Ressources pour les hôtes", url: "/host-resources", icon: ExternalLink },
-        { label: "Forum communautaire", url: "/community-forum", icon: ExternalLink },
-        { label: "Hébergement responsable", url: "/responsible-hosting", icon: Shield },
-      ]
-    },
-    hospedabem: {
-      title: "HospedaBem",
-      links: [
-        { label: "Actualités", url: "/news", icon: ExternalLink },
-        { label: "Nouvelles fonctionnalités", url: "/features", icon: ExternalLink },
-        { label: "Carrières", url: "/careers", icon: ExternalLink },
-        { label: "Investisseurs", url: "/investors", icon: ExternalLink },
-        { label: "Cartes cadeaux", url: "/gift-cards", icon: ExternalLink },
-      ]
-    },
-    misc: {
-      privacy: "Confidentialité",
-      terms: "Conditions",
-      sitemap: "Plan du site",
-      companyDetails: "Informations sur l'entreprise",
-    }
-  },
-};
-
-const socialLinks = [
-  { name: "Instagram", icon: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" },
-  { name: "Twitter", icon: "M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z" },
-  { name: "Facebook", icon: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" },
-  { name: "YouTube", icon: "M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z" },
-];
+import { MapPin } from "lucide-react";
 
 const Footer = () => {
-  const [language, setLanguage] = useState<"pt-BR" | "en-US" | "es" | "fr">("pt-BR");
-
-  const translations = linkTranslations[language];
-
-  const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setLanguage(event.target.value as "pt-BR" | "en-US" | "es" | "fr");
-  };
-
   return (
-    <footer className="bg-white dark:bg-gray-900 border-t mt-auto w-full">
-      <div className="container-custom py-8 px-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {/* Suporte Section */}
+    <footer className="bg-background py-12">
+      <div className="container-custom">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <h3 className="font-semibold mb-4 text-foreground">{translations.suporte.title}</h3>
-            <ul className="space-y-3">
-              {translations.suporte.links.map((link) => (
-                <li key={link.label}>
-                  <Link 
-                    to={link.url} 
-                    className="text-sm text-gray-600 dark:text-gray-300 hover:underline flex items-center gap-2"
-                  >
-                    <link.icon className="h-3.5 w-3.5" />
-                    <span>{link.label}</span>
-                  </Link>
-                </li>
-              ))}
+            <div className="flex items-center">
+              <MapPin className="h-5 w-5 text-airbnb-primary" />
+              <span className="text-lg font-medium ml-1">hospedabem</span>
+            </div>
+            <p className="text-muted-foreground mt-2">
+              Descubra os melhores lugares para se hospedar no Brasil.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="font-semibold">Explore</h4>
+            <ul className="mt-2 space-y-1">
+              <li>
+                <a href="#" className="hover:underline">
+                  São Paulo
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Rio de Janeiro
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Minas Gerais
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Bahia
+                </a>
+              </li>
             </ul>
           </div>
-          
-          {/* Comunidade Section */}
+
           <div>
-            <h3 className="font-semibold mb-4 text-foreground">{translations.comunidade.title}</h3>
-            <ul className="space-y-3">
-              {translations.comunidade.links.map((link) => (
-                <li key={link.label}>
-                  <Link 
-                    to={link.url} 
-                    className="text-sm text-gray-600 dark:text-gray-300 hover:underline flex items-center gap-2"
-                  >
-                    <link.icon className="h-3.5 w-3.5" />
-                    <span>{link.label}</span>
-                  </Link>
-                </li>
-              ))}
+            <h4 className="font-semibold">Hospedeiros</h4>
+            <ul className="mt-2 space-y-1">
+              <li>
+                <a href="#" className="hover:underline">
+                  Anuncie seu espaço
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Central de recursos
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Comunidade
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Fórum de suporte
+                </a>
+              </li>
             </ul>
           </div>
-          
-          {/* Hospedagem Section */}
+
           <div>
-            <h3 className="font-semibold mb-4 text-foreground">{translations.hospedagem.title}</h3>
-            <ul className="space-y-3">
-              {translations.hospedagem.links.map((link) => (
-                <li key={link.label}>
-                  <Link 
-                    to={link.url} 
-                    className="text-sm text-gray-600 dark:text-gray-300 hover:underline flex items-center gap-2"
-                  >
-                    <link.icon className="h-3.5 w-3.5" />
-                    <span>{link.label}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          {/* HospedaBem Section */}
-          <div>
-            <h3 className="font-semibold mb-4 text-foreground">{translations.hospedabem.title}</h3>
-            <ul className="space-y-3">
-              {translations.hospedabem.links.map((link) => (
-                <li key={link.label}>
-                  <Link 
-                    to={link.url} 
-                    className="text-sm text-gray-600 dark:text-gray-300 hover:underline flex items-center gap-2"
-                  >
-                    <link.icon className="h-3.5 w-3.5" />
-                    <span>{link.label}</span>
-                  </Link>
-                </li>
-              ))}
+            <h4 className="font-semibold">Sobre</h4>
+            <ul className="mt-2 space-y-1">
+              <li>
+                <a href="#" className="hover:underline">
+                  Nossa história
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Equipe
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Carreiras
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Imprensa
+                </a>
+              </li>
             </ul>
           </div>
         </div>
-        
-        <Separator className="my-8" />
-        
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <div className="flex flex-col md:flex-row items-center gap-4 mb-4 md:mb-0">
-            <p className="text-sm text-gray-600 dark:text-gray-300">© 2025 HospedaBem, Inc.</p>
-            <div className="hidden md:flex gap-2">
-              <span className="text-sm text-gray-400">·</span>
-              <Link to="/privacy" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">{translations.misc.privacy}</Link>
-              <span className="text-sm text-gray-400">·</span>
-              <Link to="/terms" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">{translations.misc.terms}</Link>
-              <span className="text-sm text-gray-400">·</span>
-              <Link to="/sitemap" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">{translations.misc.sitemap}</Link>
-              <span className="text-sm text-gray-400">·</span>
-              <Link to="/company-details" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">{translations.misc.companyDetails}</Link>
+
+        <div className="mt-8 border-t pt-8">
+          <div className="flex flex-wrap gap-4 items-center justify-between">
+            <div className="flex flex-wrap items-center gap-4">
+              <span className="text-foreground">&copy; 2025 HospedaBem, Inc.</span>
+              <span className="text-foreground">&middot;</span>
+              <a href="#" className="text-foreground hover:underline">Privacidade</a>
+              <span className="text-foreground">&middot;</span>
+              <a href="#" className="text-foreground hover:underline">Termos</a>
+              <span className="text-foreground">&middot;</span>
+              <a href="#" className="text-foreground hover:underline">Mapa do site</a>
             </div>
-          </div>
-          
-          <div className="flex items-center space-x-6">
-            <div className="flex flex-wrap gap-4">
-              {socialLinks.map((social) => (
-                <a 
-                  key={social.name}
-                  href={`https://${social.name.toLowerCase()}.com`} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-gray-300 hover:text-airbnb-primary transition-colors"
-                  aria-label={social.name}
-                >
-                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path d={social.icon} />
-                  </svg>
-                </a>
-              ))}
-              <div className="flex items-center space-x-2">
-                <Globe className="h-5 w-5" />
-                <select 
-                  className="bg-transparent border-none text-sm font-medium focus:outline-none cursor-pointer text-foreground"
-                  value={language}
-                  onChange={handleLanguageChange}
-                >
-                  <option value="pt-BR">Português (BR)</option>
-                  <option value="en-US">English (US)</option>
-                  <option value="es">Español</option>
-                  <option value="fr">Français</option>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
+                <svg className="h-5 w-5" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+                <a href="#" className="text-foreground hover:underline">GitHub</a>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <select className="text-foreground bg-background border rounded px-2 py-1 text-sm cursor-pointer">
+                  <option value="pt-BR" className="text-foreground">Português (BR)</option>
+                  <option value="en-US" className="text-foreground">English (US)</option>
+                  <option value="es-ES" className="text-foreground">Español (ES)</option>
+                  <option value="fr-FR" className="text-foreground">Français (FR)</option>
+                  <option value="de-DE" className="text-foreground">Deutsch (DE)</option>
                 </select>
               </div>
             </div>
-          </div>
-        </div>
-        
-        {/* Mobile links */}
-        <div className="md:hidden flex flex-col gap-2 mt-6">
-          <div className="flex flex-wrap gap-2 justify-center">
-            <Link to="/privacy" className="text-sm text-gray-600 dark:text-gray-300 hover:underline px-2">{translations.misc.privacy}</Link>
-            <Link to="/terms" className="text-sm text-gray-600 dark:text-gray-300 hover:underline px-2">{translations.misc.terms}</Link>
-            <Link to="/sitemap" className="text-sm text-gray-600 dark:text-gray-300 hover:underline px-2">{translations.misc.sitemap}</Link>
-            <Link to="/company-details" className="text-sm text-gray-600 dark:text-gray-300 hover:underline px-2">{translations.misc.companyDetails}</Link>
           </div>
         </div>
       </div>

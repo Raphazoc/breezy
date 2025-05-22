@@ -13,6 +13,7 @@ import Favorites from "./pages/Favorites";
 import Profile from "./pages/Profile";
 import CategoryPage from "./pages/CategoryPage";
 import SearchResults from "./pages/SearchResults";
+import FiltersPage from "./pages/FiltersPage";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ const App = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/category/:categoryId" element={<CategoryPage />} />
             <Route path="/search" element={<SearchResults />} />
+            <Route path="/filters" element={<FiltersPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
