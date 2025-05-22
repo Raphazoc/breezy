@@ -25,7 +25,7 @@ const PropertyDetail = () => {
 
   useEffect(() => {
     // Find the property by ID (converting param string to number)
-    const foundProperty = properties.find((p) => p.id === parseInt(id || '0', 10));
+    const foundProperty = properties.find(p => p.id === Number(id));
     
     if (foundProperty) {
       setProperty(foundProperty as Property);

@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
-import { Switch } from "@/components/ui/switch";
+import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const ThemeToggle = () => {
@@ -30,17 +30,21 @@ const ThemeToggle = () => {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <div className="flex items-center gap-2 px-2 py-1 rounded-full border hover:bg-muted cursor-pointer transition-all" onClick={toggleTheme}>
-            <Sun className={`h-4 w-4 transition-opacity duration-300 ${theme === 'light' ? 'text-yellow-500' : 'text-muted-foreground opacity-50'}`} />
-            <Switch 
-              checked={theme === "dark"}
-              className="data-[state=checked]:bg-indigo-600"
-            />
-            <Moon className={`h-4 w-4 transition-opacity duration-300 ${theme === 'dark' ? 'text-indigo-400' : 'text-muted-foreground opacity-50'}`} />
-          </div>
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={toggleTheme}
+            className="relative overflow-hidden rounded-full w-9 h-9 hover:bg-muted transition-all"
+          >
+            <Sun className={`h-[1.2rem] w-[1.2rem] absolute transition-all ${theme === 'light' ? 'scale-100 rotate-0 opacity-100' : 'scale-0 -rotate-90 opacity-0'}`} />
+            <Moon className={`h-[1.2rem] w-[1.2rem] absolute transition-all ${theme === 'dark' ? 'scale-100 rotate-0 opacity-100' : 'scale-0 rotate-90 opacity-0'}`} />
+            <span className="sr-only">Alternar tema</span>
+          </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <p className="text-foreground">{theme === "light" ? "Alternar para modo escuro" : "Alternar para modo claro"}</p>
+          <p className="text-foreground">
+            {theme === "light" ? "Alternar para modo escuro" : "Alternar para modo claro"}
+          </p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

@@ -35,21 +35,24 @@ const PropertyCard = ({
 
   const nextImage = (e: React.MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
   };
 
   const prevImage = (e: React.MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
   const toggleFavorite = (e: React.MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     setIsFavorite(!isFavorite);
   };
 
   return (
-    <Link to={`/property/${id}`} className="group">
+    <Link to={`/property/${id}`} className="group block">
       <div className="relative">
         <AspectRatio ratio={1 / 1} className="bg-muted rounded-xl overflow-hidden">
           <img
@@ -62,7 +65,7 @@ const PropertyCard = ({
             <>
               <button
                 onClick={prevImage}
-                className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10"
               >
                 <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
                   <path d="M10 12L6 8L10 4" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -71,14 +74,14 @@ const PropertyCard = ({
               
               <button
                 onClick={nextImage}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10"
               >
                 <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
                   <path d="M6 4L10 8L6 12" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </button>
               
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
                 {images.map((_, index) => (
                   <div
                     key={index}
@@ -95,10 +98,11 @@ const PropertyCard = ({
           <button
             onClick={toggleFavorite}
             className="absolute top-2 right-2 z-10"
+            aria-label={isFavorite ? "Remover dos favoritos" : "Adicionar aos favoritos"}
           >
             <Heart 
               className={cn(
-                "h-6 w-6 transition-colors",
+                "h-6 w-6 transition-colors drop-shadow-md",
                 isFavorite ? "fill-airbnb-primary text-airbnb-primary" : "text-white stroke-[1.5]"
               )} 
             />
@@ -108,9 +112,9 @@ const PropertyCard = ({
       
       <div className="mt-2">
         <div className="flex justify-between">
-          <h3 className="font-medium text-base">{title}</h3>
+          <h3 className="font-medium text-base text-foreground">{title}</h3>
           {rating > 0 && (
-            <div className="flex items-center">
+            <div className="flex items-center text-foreground">
               <svg
                 className="w-4 h-4"
                 viewBox="0 0 24 24"
@@ -120,18 +124,18 @@ const PropertyCard = ({
               </svg>
               <span className="ml-1 text-sm">{rating}</span>
               {reviewCount && (
-                <span className="text-gray-500 ml-1 text-sm">({reviewCount})</span>
+                <span className="text-muted-foreground ml-1 text-sm">({reviewCount})</span>
               )}
             </div>
           )}
         </div>
-        <p className="text-gray-500 text-sm">{host}</p>
-        <p className="text-gray-500 text-sm">{location}</p>
-        {distance && <p className="text-gray-500 text-sm">{distance}</p>}
-        {dates && <p className="text-gray-500 text-sm">{dates}</p>}
-        <p className="mt-1">
+        <p className="text-muted-foreground text-sm">{host}</p>
+        <p className="text-muted-foreground text-sm">{location}</p>
+        {distance && <p className="text-muted-foreground text-sm">{distance}</p>}
+        {dates && <p className="text-muted-foreground text-sm">{dates}</p>}
+        <p className="mt-1 text-foreground">
           <span className="font-semibold">R$ {price}</span>
-          <span className="text-gray-500"> noite</span>
+          <span className="text-muted-foreground"> noite</span>
         </p>
       </div>
     </Link>
