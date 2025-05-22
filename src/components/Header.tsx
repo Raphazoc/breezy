@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Search, MapPin } from "lucide-react";
@@ -33,7 +32,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-background border-b py-2 sticky top-0 z-20">
+    <header className="bg-background border-b py-2 sticky top-0 z-40">
       <div className="container-custom flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center">
