@@ -25,10 +25,10 @@ const PropertyDetail = () => {
 
   useEffect(() => {
     // Find the property by ID (converting param string to number)
-    const foundProperty = properties.find((p) => p.id === Number(id));
+    const foundProperty = properties.find((p) => p.id === parseInt(id || '0', 10));
     
     if (foundProperty) {
-      setProperty(foundProperty);
+      setProperty(foundProperty as Property);
     }
   }, [id]);
 
@@ -91,7 +91,7 @@ const PropertyDetail = () => {
             </div>
             
             <div className="h-[400px] lg:h-full rounded-xl overflow-hidden">
-              <Map location={property.location} />
+              <Map />
             </div>
           </div>
         </div>

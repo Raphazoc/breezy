@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
-import { Button } from "./ui/button";
+import { Switch } from "@/components/ui/switch";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const ThemeToggle = () => {
@@ -30,26 +30,17 @@ const ThemeToggle = () => {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={toggleTheme}
-            className="rounded-full w-9 h-9 hover:bg-muted transition-all"
-          >
-            <div className="relative w-5 h-5">
-              {/* Sun Icon with Animation */}
-              <Sun className={`h-5 w-5 absolute transition-opacity duration-300 ${theme === 'dark' ? 'opacity-100' : 'opacity-0'}`} />
-              
-              {/* Moon Icon with Animation */}
-              <Moon className={`h-5 w-5 absolute transition-opacity duration-300 ${theme === 'light' ? 'opacity-100' : 'opacity-0'}`} />
-            </div>
-            <span className="sr-only">
-              {theme === "light" ? "Ativar modo escuro" : "Ativar modo claro"}
-            </span>
-          </Button>
+          <div className="flex items-center gap-2 px-2 py-1 rounded-full border hover:bg-muted cursor-pointer transition-all" onClick={toggleTheme}>
+            <Sun className={`h-4 w-4 transition-opacity duration-300 ${theme === 'light' ? 'text-yellow-500' : 'text-muted-foreground opacity-50'}`} />
+            <Switch 
+              checked={theme === "dark"}
+              className="data-[state=checked]:bg-indigo-600"
+            />
+            <Moon className={`h-4 w-4 transition-opacity duration-300 ${theme === 'dark' ? 'text-indigo-400' : 'text-muted-foreground opacity-50'}`} />
+          </div>
         </TooltipTrigger>
         <TooltipContent>
-          <p>{theme === "light" ? "Modo escuro" : "Modo claro"}</p>
+          <p className="text-foreground">{theme === "light" ? "Alternar para modo escuro" : "Alternar para modo claro"}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

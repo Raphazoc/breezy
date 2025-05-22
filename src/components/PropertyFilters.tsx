@@ -26,7 +26,6 @@ interface PropertyFiltersProps {
 const PropertyFilters = ({ activeFilter, onFilterChange }: PropertyFiltersProps) => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<string>(activeFilter || "vistas-incriveis");
-  const [isFilterApplied, setIsFilterApplied] = useState(false);
   
   // Optional: track number of filters applied (could be from URL parameters)
   const activeFiltersCount = 0; 
@@ -43,7 +42,7 @@ const PropertyFilters = ({ activeFilter, onFilterChange }: PropertyFiltersProps)
   };
 
   return (
-    <div className="bg-background py-4 border-b sticky top-[72px] z-10">
+    <div className="bg-background py-4 border-b sticky top-[53px] z-10 shadow-sm">
       <div className="container-custom">
         <div className="flex items-center justify-between gap-4">
           {/* Categories */}
@@ -57,7 +56,7 @@ const PropertyFilters = ({ activeFilter, onFilterChange }: PropertyFiltersProps)
                     className="flex flex-col items-center justify-center px-1 py-2 text-xs border-b-2 border-transparent data-[state=active]:border-black dark:data-[state=active]:border-white rounded-none"
                   >
                     <span className="text-2xl mb-1">{category.icon}</span>
-                    <span className="text-center text-foreground mt-1 whitespace-nowrap">
+                    <span className="text-center text-foreground font-medium mt-1 whitespace-nowrap">
                       {category.label}
                     </span>
                   </TabsTrigger>
@@ -73,7 +72,7 @@ const PropertyFilters = ({ activeFilter, onFilterChange }: PropertyFiltersProps)
             className="flex items-center gap-2 min-w-24 px-4 py-2 border-gray-300 shadow-sm hover:shadow-md transition-shadow"
           >
             <Filter className="h-4 w-4" />
-            <span>Filtros</span>
+            <span className="text-foreground font-medium">Filtros</span>
             {activeFiltersCount > 0 && (
               <Badge variant="secondary" className="ml-1 h-5 w-5 p-0 flex items-center justify-center rounded-full">
                 {activeFiltersCount}
