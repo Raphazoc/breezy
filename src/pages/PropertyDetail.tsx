@@ -22,7 +22,8 @@ interface Property {
 const PropertyDetail = () => {
   const { id } = useParams<{ id: string }>();
   // Convert the id parameter to number for comparison
-  const property = properties.find((p) => p.id === parseInt(id || "0")) as Property | undefined;
+  const propertyId = parseInt(id || "0", 10);
+  const property = properties.find((p) => p.id === propertyId) as Property | undefined;
 
   if (!property) {
     return (

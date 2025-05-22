@@ -36,11 +36,13 @@ const ThemeToggle = () => {
             onClick={toggleTheme}
             className="rounded-full w-9 h-9 hover:bg-muted transition-all"
           >
-            {theme === "light" ? (
-              <Moon className="h-[1.2rem] w-[1.2rem]" />
-            ) : (
-              <Sun className="h-[1.2rem] w-[1.2rem]" />
-            )}
+            <div className="relative w-5 h-5">
+              {/* Sun Icon with Animation */}
+              <Sun className={`h-5 w-5 absolute transition-opacity duration-300 ${theme === 'dark' ? 'opacity-100' : 'opacity-0'}`} />
+              
+              {/* Moon Icon with Animation */}
+              <Moon className={`h-5 w-5 absolute transition-opacity duration-300 ${theme === 'light' ? 'opacity-100' : 'opacity-0'}`} />
+            </div>
             <span className="sr-only">
               {theme === "light" ? "Ativar modo escuro" : "Ativar modo claro"}
             </span>

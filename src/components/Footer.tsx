@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
 import { ExternalLink, Mail, Phone, MapPin, Shield, Globe, HelpCircle, Home, Smartphone } from "lucide-react";
@@ -33,6 +34,197 @@ const footerLinks = {
   ],
 };
 
+const linkTranslations = {
+  "pt-BR": {
+    suporte: {
+      title: "Suporte",
+      links: [
+        { label: "Central de Ajuda", url: "/help", icon: HelpCircle },
+        { label: "AirCover para hóspedes", url: "/aircover", icon: Shield },
+        { label: "Opções de cancelamento", url: "/cancellation", icon: ExternalLink },
+        { label: "Apoio à deficiência", url: "/accessibility", icon: HelpCircle },
+        { label: "Reporte problema", url: "/report", icon: ExternalLink },
+      ]
+    },
+    comunidade: {
+      title: "Comunidade",
+      links: [
+        { label: "Resposta à emergências", url: "/emergency", icon: Phone },
+        { label: "Contra discriminação", url: "/non-discrimination", icon: Shield },
+        { label: "Programa de referência", url: "/referrals", icon: ExternalLink },
+        { label: "HospedaBem.org", url: "/nonprofit", icon: Home },
+      ]
+    },
+    hospedagem: {
+      title: "Hospedagem",
+      links: [
+        { label: "Anuncie seu espaço", url: "/host", icon: Home },
+        { label: "Proteção para anfitriões", url: "/host-protection", icon: Shield },
+        { label: "Recursos para anfitriões", url: "/host-resources", icon: ExternalLink },
+        { label: "Fórum da comunidade", url: "/community-forum", icon: ExternalLink },
+        { label: "Hospedagem responsável", url: "/responsible-hosting", icon: Shield },
+      ]
+    },
+    hospedabem: {
+      title: "HospedaBem",
+      links: [
+        { label: "Novidades", url: "/news", icon: ExternalLink },
+        { label: "Novos recursos", url: "/features", icon: ExternalLink },
+        { label: "Carreiras", url: "/careers", icon: ExternalLink },
+        { label: "Investidores", url: "/investors", icon: ExternalLink },
+        { label: "Cartão presente", url: "/gift-cards", icon: ExternalLink },
+      ]
+    },
+    misc: {
+      privacy: "Privacidade",
+      terms: "Termos",
+      sitemap: "Mapa do site",
+      companyDetails: "Detalhes da empresa",
+    }
+  },
+  "en-US": {
+    suporte: {
+      title: "Support",
+      links: [
+        { label: "Help Center", url: "/help", icon: HelpCircle },
+        { label: "AirCover for guests", url: "/aircover", icon: Shield },
+        { label: "Cancellation options", url: "/cancellation", icon: ExternalLink },
+        { label: "Accessibility support", url: "/accessibility", icon: HelpCircle },
+        { label: "Report issue", url: "/report", icon: ExternalLink },
+      ]
+    },
+    comunidade: {
+      title: "Community",
+      links: [
+        { label: "Emergency response", url: "/emergency", icon: Phone },
+        { label: "Anti-discrimination", url: "/non-discrimination", icon: Shield },
+        { label: "Referral program", url: "/referrals", icon: ExternalLink },
+        { label: "HospedaBem.org", url: "/nonprofit", icon: Home },
+      ]
+    },
+    hospedagem: {
+      title: "Hosting",
+      links: [
+        { label: "List your space", url: "/host", icon: Home },
+        { label: "Host protection", url: "/host-protection", icon: Shield },
+        { label: "Host resources", url: "/host-resources", icon: ExternalLink },
+        { label: "Community forum", url: "/community-forum", icon: ExternalLink },
+        { label: "Responsible hosting", url: "/responsible-hosting", icon: Shield },
+      ]
+    },
+    hospedabem: {
+      title: "HospedaBem",
+      links: [
+        { label: "News", url: "/news", icon: ExternalLink },
+        { label: "New features", url: "/features", icon: ExternalLink },
+        { label: "Careers", url: "/careers", icon: ExternalLink },
+        { label: "Investors", url: "/investors", icon: ExternalLink },
+        { label: "Gift cards", url: "/gift-cards", icon: ExternalLink },
+      ]
+    },
+    misc: {
+      privacy: "Privacy",
+      terms: "Terms",
+      sitemap: "Sitemap",
+      companyDetails: "Company details",
+    }
+  },
+  "es": {
+    suporte: {
+      title: "Soporte",
+      links: [
+        { label: "Centro de ayuda", url: "/help", icon: HelpCircle },
+        { label: "AirCover para huéspedes", url: "/aircover", icon: Shield },
+        { label: "Opciones de cancelación", url: "/cancellation", icon: ExternalLink },
+        { label: "Apoyo a la discapacidad", url: "/accessibility", icon: HelpCircle },
+        { label: "Reportar problema", url: "/report", icon: ExternalLink },
+      ]
+    },
+    comunidade: {
+      title: "Comunidad",
+      links: [
+        { label: "Respuesta a emergencias", url: "/emergency", icon: Phone },
+        { label: "Contra discriminación", url: "/non-discrimination", icon: Shield },
+        { label: "Programa de referidos", url: "/referrals", icon: ExternalLink },
+        { label: "HospedaBem.org", url: "/nonprofit", icon: Home },
+      ]
+    },
+    hospedagem: {
+      title: "Hospedaje",
+      links: [
+        { label: "Anuncia tu espacio", url: "/host", icon: Home },
+        { label: "Protección para anfitriones", url: "/host-protection", icon: Shield },
+        { label: "Recursos para anfitriones", url: "/host-resources", icon: ExternalLink },
+        { label: "Foro de la comunidad", url: "/community-forum", icon: ExternalLink },
+        { label: "Hospedaje responsable", url: "/responsible-hosting", icon: Shield },
+      ]
+    },
+    hospedabem: {
+      title: "HospedaBem",
+      links: [
+        { label: "Novedades", url: "/news", icon: ExternalLink },
+        { label: "Nuevas características", url: "/features", icon: ExternalLink },
+        { label: "Carreras", url: "/careers", icon: ExternalLink },
+        { label: "Inversores", url: "/investors", icon: ExternalLink },
+        { label: "Tarjeta regalo", url: "/gift-cards", icon: ExternalLink },
+      ]
+    },
+    misc: {
+      privacy: "Privacidad",
+      terms: "Términos",
+      sitemap: "Mapa del sitio",
+      companyDetails: "Detalles de la empresa",
+    }
+  },
+  "fr": {
+    suporte: {
+      title: "Assistance",
+      links: [
+        { label: "Centre d'aide", url: "/help", icon: HelpCircle },
+        { label: "AirCover pour les voyageurs", url: "/aircover", icon: Shield },
+        { label: "Options d'annulation", url: "/cancellation", icon: ExternalLink },
+        { label: "Accessibilité", url: "/accessibility", icon: HelpCircle },
+        { label: "Signaler un problème", url: "/report", icon: ExternalLink },
+      ]
+    },
+    comunidade: {
+      title: "Communauté",
+      links: [
+        { label: "Réponse d'urgence", url: "/emergency", icon: Phone },
+        { label: "Contre la discrimination", url: "/non-discrimination", icon: Shield },
+        { label: "Programme de parrainage", url: "/referrals", icon: ExternalLink },
+        { label: "HospedaBem.org", url: "/nonprofit", icon: Home },
+      ]
+    },
+    hospedagem: {
+      title: "Hébergement",
+      links: [
+        { label: "Mettre son logement sur HospedaBem", url: "/host", icon: Home },
+        { label: "Protection des hôtes", url: "/host-protection", icon: Shield },
+        { label: "Ressources pour les hôtes", url: "/host-resources", icon: ExternalLink },
+        { label: "Forum communautaire", url: "/community-forum", icon: ExternalLink },
+        { label: "Hébergement responsable", url: "/responsible-hosting", icon: Shield },
+      ]
+    },
+    hospedabem: {
+      title: "HospedaBem",
+      links: [
+        { label: "Actualités", url: "/news", icon: ExternalLink },
+        { label: "Nouvelles fonctionnalités", url: "/features", icon: ExternalLink },
+        { label: "Carrières", url: "/careers", icon: ExternalLink },
+        { label: "Investisseurs", url: "/investors", icon: ExternalLink },
+        { label: "Cartes cadeaux", url: "/gift-cards", icon: ExternalLink },
+      ]
+    },
+    misc: {
+      privacy: "Confidentialité",
+      terms: "Conditions",
+      sitemap: "Plan du site",
+      companyDetails: "Informations sur l'entreprise",
+    }
+  },
+};
+
 const socialLinks = [
   { name: "Instagram", icon: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" },
   { name: "Twitter", icon: "M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z" },
@@ -41,15 +233,23 @@ const socialLinks = [
 ];
 
 const Footer = () => {
+  const [language, setLanguage] = useState<"pt-BR" | "en-US" | "es" | "fr">("pt-BR");
+
+  const translations = linkTranslations[language];
+
+  const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setLanguage(event.target.value as "pt-BR" | "en-US" | "es" | "fr");
+  };
+
   return (
     <footer className="bg-white dark:bg-gray-900 border-t mt-auto w-full">
       <div className="container-custom py-8 px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {/* Suporte Section */}
           <div>
-            <h3 className="font-semibold mb-4 text-foreground">Suporte</h3>
+            <h3 className="font-semibold mb-4 text-foreground">{translations.suporte.title}</h3>
             <ul className="space-y-3">
-              {footerLinks.suporte.map((link) => (
+              {translations.suporte.links.map((link) => (
                 <li key={link.label}>
                   <Link 
                     to={link.url} 
@@ -65,9 +265,9 @@ const Footer = () => {
           
           {/* Comunidade Section */}
           <div>
-            <h3 className="font-semibold mb-4 text-foreground">Comunidade</h3>
+            <h3 className="font-semibold mb-4 text-foreground">{translations.comunidade.title}</h3>
             <ul className="space-y-3">
-              {footerLinks.comunidade.map((link) => (
+              {translations.comunidade.links.map((link) => (
                 <li key={link.label}>
                   <Link 
                     to={link.url} 
@@ -83,9 +283,9 @@ const Footer = () => {
           
           {/* Hospedagem Section */}
           <div>
-            <h3 className="font-semibold mb-4 text-foreground">Hospedagem</h3>
+            <h3 className="font-semibold mb-4 text-foreground">{translations.hospedagem.title}</h3>
             <ul className="space-y-3">
-              {footerLinks.hospedagem.map((link) => (
+              {translations.hospedagem.links.map((link) => (
                 <li key={link.label}>
                   <Link 
                     to={link.url} 
@@ -101,9 +301,9 @@ const Footer = () => {
           
           {/* HospedaBem Section */}
           <div>
-            <h3 className="font-semibold mb-4 text-foreground">HospedaBem</h3>
+            <h3 className="font-semibold mb-4 text-foreground">{translations.hospedabem.title}</h3>
             <ul className="space-y-3">
-              {footerLinks.hospedabem.map((link) => (
+              {translations.hospedabem.links.map((link) => (
                 <li key={link.label}>
                   <Link 
                     to={link.url} 
@@ -125,13 +325,13 @@ const Footer = () => {
             <p className="text-sm text-gray-600 dark:text-gray-300">© 2025 HospedaBem, Inc.</p>
             <div className="hidden md:flex gap-2">
               <span className="text-sm text-gray-400">·</span>
-              <Link to="/privacy" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Privacidade</Link>
+              <Link to="/privacy" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">{translations.misc.privacy}</Link>
               <span className="text-sm text-gray-400">·</span>
-              <Link to="/terms" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Termos</Link>
+              <Link to="/terms" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">{translations.misc.terms}</Link>
               <span className="text-sm text-gray-400">·</span>
-              <Link to="/sitemap" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Mapa do site</Link>
+              <Link to="/sitemap" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">{translations.misc.sitemap}</Link>
               <span className="text-sm text-gray-400">·</span>
-              <Link to="/company-details" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">Detalhes da empresa</Link>
+              <Link to="/company-details" className="text-sm text-gray-600 dark:text-gray-300 hover:underline">{translations.misc.companyDetails}</Link>
             </div>
           </div>
           
@@ -154,11 +354,12 @@ const Footer = () => {
               <div className="flex items-center space-x-2">
                 <Globe className="h-5 w-5" />
                 <select 
-                  className="bg-transparent border-none text-sm font-medium focus:outline-none cursor-pointer"
-                  defaultValue="pt-BR"
+                  className="bg-transparent border-none text-sm font-medium focus:outline-none cursor-pointer text-foreground"
+                  value={language}
+                  onChange={handleLanguageChange}
                 >
-                  <option value="en-US">English (US)</option>
                   <option value="pt-BR">Português (BR)</option>
+                  <option value="en-US">English (US)</option>
                   <option value="es">Español</option>
                   <option value="fr">Français</option>
                 </select>
@@ -170,10 +371,10 @@ const Footer = () => {
         {/* Mobile links */}
         <div className="md:hidden flex flex-col gap-2 mt-6">
           <div className="flex flex-wrap gap-2 justify-center">
-            <Link to="/privacy" className="text-sm text-gray-600 dark:text-gray-300 hover:underline px-2">Privacidade</Link>
-            <Link to="/terms" className="text-sm text-gray-600 dark:text-gray-300 hover:underline px-2">Termos</Link>
-            <Link to="/sitemap" className="text-sm text-gray-600 dark:text-gray-300 hover:underline px-2">Mapa do site</Link>
-            <Link to="/company-details" className="text-sm text-gray-600 dark:text-gray-300 hover:underline px-2">Detalhes da empresa</Link>
+            <Link to="/privacy" className="text-sm text-gray-600 dark:text-gray-300 hover:underline px-2">{translations.misc.privacy}</Link>
+            <Link to="/terms" className="text-sm text-gray-600 dark:text-gray-300 hover:underline px-2">{translations.misc.terms}</Link>
+            <Link to="/sitemap" className="text-sm text-gray-600 dark:text-gray-300 hover:underline px-2">{translations.misc.sitemap}</Link>
+            <Link to="/company-details" className="text-sm text-gray-600 dark:text-gray-300 hover:underline px-2">{translations.misc.companyDetails}</Link>
           </div>
         </div>
       </div>
