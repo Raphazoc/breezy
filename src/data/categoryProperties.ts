@@ -156,3 +156,159 @@ export const campoProperties: PropertyProps[] = [
     host: "Hospedado por Fernando"
   }
 ];
+
+// Propriedades específicas para Tropical
+export const tropicalProperties: PropertyProps[] = [
+  {
+    id: "tropical-1",
+    title: "Resort Tropical Paradise",
+    location: "Fernando de Noronha, Pernambuco",
+    distance: "2 horas de voo",
+    dates: "15-22 de Jan",
+    price: 1500,
+    rating: 4.98,
+    reviewCount: 215,
+    images: [
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1000",
+      "https://images.unsplash.com/photo-1571770095004-6b61b1cf308a?q=80&w=1000",
+      "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1000"
+    ],
+    host: "Hospedado por Isabella"
+  },
+  {
+    id: "tropical-2",
+    title: "Villa Tropical com Piscina",
+    location: "Porto de Galinhas, Pernambuco",
+    distance: "1.5 horas de voo",
+    dates: "8-15 de Fev",
+    price: 980,
+    rating: 4.92,
+    reviewCount: 163,
+    images: [
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000",
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1000",
+      "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1000"
+    ],
+    host: "Hospedado por Rafael"
+  },
+  {
+    id: "tropical-3",
+    title: "Bangalô à Beira-Mar",
+    location: "Morro de São Paulo, Bahia",
+    distance: "1 hora de barco",
+    dates: "20-28 de Jan",
+    price: 750,
+    rating: 4.89,
+    reviewCount: 142,
+    images: [
+      "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?q=80&w=1000",
+      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1000",
+      "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1000"
+    ],
+    host: "Hospedado por Camila"
+  }
+];
+
+// Propriedades específicas para Cidades Icônicas
+export const cidadesIconicasProperties: PropertyProps[] = [
+  {
+    id: "cidades-iconicas-1",
+    title: "Apartamento em Ipanema",
+    location: "Rio de Janeiro, RJ",
+    distance: "30 min do centro",
+    dates: "12-18 de Dez",
+    price: 820,
+    rating: 4.95,
+    reviewCount: 187,
+    images: [
+      "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=1000",
+      "https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=80&w=1000",
+      "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=1000"
+    ],
+    host: "Hospedado por Beatriz"
+  },
+  {
+    id: "cidades-iconicas-2",
+    title: "Loft no Centro Histórico",
+    location: "Salvador, Bahia",
+    distance: "Pelourinho",
+    dates: "5-12 de Nov",
+    price: 650,
+    rating: 4.88,
+    reviewCount: 124,
+    images: [
+      "https://images.unsplash.com/photo-1466442929976-97f336a657be?q=80&w=1000",
+      "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1000",
+      "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?q=80&w=1000"
+    ],
+    host: "Hospedado por Jorge"
+  },
+  {
+    id: "cidades-iconicas-3",
+    title: "Cobertura em Copacabana",
+    location: "Rio de Janeiro, RJ",
+    distance: "Vista para a praia",
+    dates: "25-30 de Dez",
+    price: 1200,
+    rating: 4.96,
+    reviewCount: 203,
+    images: [
+      "https://images.unsplash.com/photo-1492321936769-b49830bc1d1e?q=80&w=1000",
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1000",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1000"
+    ],
+    host: "Hospedado por Fernanda"
+  }
+];
+
+// Propriedades específicas para Em Alta
+export const emAltaProperties: PropertyProps[] = [
+  {
+    id: "em-alta-1",
+    title: "Casa Sustentável na Chapada",
+    location: "Chapada Diamantina, Bahia",
+    distance: "4 horas de carro",
+    dates: "10-17 de Jan",
+    price: 690,
+    rating: 4.94,
+    reviewCount: 98,
+    images: [
+      "https://images.unsplash.com/photo-1439066615861-d1af74d74000?q=80&w=1000",
+      "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=1000",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1000"
+    ],
+    host: "Hospedado por Lucas"
+  },
+  {
+    id: "em-alta-2",
+    title: "Eco Lodge na Amazônia",
+    location: "Manaus, Amazonas",
+    distance: "1 hora de barco",
+    dates: "22-29 de Fev",
+    price: 890,
+    rating: 4.97,
+    reviewCount: 156,
+    images: [
+      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1000",
+      "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=1000",
+      "https://images.unsplash.com/photo-1464822759844-d150ad6d1c1c?q=80&w=1000"
+    ],
+    host: "Hospedado por Amanda"
+  },
+  {
+    id: "em-alta-3",
+    title: "Pousada Boutique no Pantanal",
+    location: "Pantanal, Mato Grosso do Sul",
+    distance: "3 horas de voo",
+    dates: "5-14 de Mar",
+    price: 1150,
+    rating: 4.91,
+    reviewCount: 89,
+    images: [
+      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1000",
+      "https://images.unsplash.com/photo-1560184897-ae75f418493e?q=80&w=1000",
+      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1000"
+    ],
+    host: "Hospedado por Ricardo"
+  }
+];

@@ -6,6 +6,14 @@ import PropertyFilters from "@/components/PropertyFilters";
 import PropertyCard from "@/components/PropertyCard";
 import Footer from "@/components/Footer";
 import { properties } from "@/data/properties";
+import { 
+  beiraMarProperties, 
+  cabanasProperties, 
+  campoProperties,
+  tropicalProperties,
+  cidadesIconicasProperties,
+  emAltaProperties
+} from "@/data/categoryProperties";
 
 const categoryTitles: Record<string, string> = {
   "vistas-incriveis": "Vistas Incríveis",
@@ -33,15 +41,28 @@ const categoryDescriptions: Record<string, string> = {
   "camping": "Experiências de acampamento com contato direto com a natureza.",
 };
 
-// Filtra propriedades para cada categoria (simulado aqui)
+// Função para obter propriedades específicas de cada categoria
 const getCategoryProperties = (categoryId: string) => {
-  // Em um aplicativo real, você faria uma requisição ao backend para filtrar
-  // Aqui estamos simulando com um filtro aleatório baseado no id da categoria
-  return properties.filter((_, index) => {
-    // Usa o index e o categoryId para criar uma filtragem consistente mas variada
-    const hash = categoryId.charCodeAt(0) + categoryId.length;
-    return index % 10 < (hash % 5) + 3; // Retorna entre 3 e 7 itens
-  });
+  switch (categoryId) {
+    case "beira-mar":
+      return beiraMarProperties;
+    case "cabanas":
+      return cabanasProperties;
+    case "campo":
+      return campoProperties;
+    case "tropical":
+      return tropicalProperties;
+    case "cidades-iconicas":
+      return cidadesIconicasProperties;
+    case "em-alta":
+      return emAltaProperties;
+    default:
+      // Para outras categorias, usa um filtro aleatório das propriedades gerais
+      return properties.filter((_, index) => {
+        const hash = categoryId.charCodeAt(0) + categoryId.length;
+        return index % 10 < (hash % 5) + 3;
+      });
+  }
 };
 
 const CategoryPage = () => {
