@@ -4,14 +4,13 @@ import Header from "@/components/Header";
 import PropertyFilters from "@/components/PropertyFilters";
 import PropertyCard from "@/components/PropertyCard";
 import Footer from "@/components/Footer";
-import { properties } from "@/data/properties";
+import { campoProperties } from "@/data/categoryProperties";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const CampoPage = () => {
   const [activeFilter, setActiveFilter] = useState<string | null>("campo");
+  const { t } = useTranslation();
   
-  // Filtra propriedades relacionadas ao campo
-  const campoProperties = properties.filter((_, index) => index % 3 === 2);
-
   const handleFilterChange = (filter: string) => {
     setActiveFilter(filter);
   };
@@ -25,9 +24,9 @@ const CampoPage = () => {
         <section className="py-6 md:py-12">
           <div className="container-custom">
             <div className="mb-6 md:mb-8">
-              <h1 className="text-2xl md:text-3xl font-bold mb-2">🌄 Propriedades no Campo</h1>
+              <h1 className="text-2xl md:text-3xl font-bold mb-2">{t('pages.campoTitle')}</h1>
               <p className="text-muted-foreground text-sm md:text-base">
-                Propriedades rurais com tranquilidade e contato direto com a natureza
+                {t('pages.campoDescription')}
               </p>
             </div>
             

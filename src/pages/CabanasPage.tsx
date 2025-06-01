@@ -4,14 +4,13 @@ import Header from "@/components/Header";
 import PropertyFilters from "@/components/PropertyFilters";
 import PropertyCard from "@/components/PropertyCard";
 import Footer from "@/components/Footer";
-import { properties } from "@/data/properties";
+import { cabanasProperties } from "@/data/categoryProperties";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const CabanasPage = () => {
   const [activeFilter, setActiveFilter] = useState<string | null>("cabanas");
+  const { t } = useTranslation();
   
-  // Filtra propriedades relacionadas à cabanas
-  const cabanasProperties = properties.filter((_, index) => index % 3 === 1);
-
   const handleFilterChange = (filter: string) => {
     setActiveFilter(filter);
   };
@@ -25,9 +24,9 @@ const CabanasPage = () => {
         <section className="py-6 md:py-12">
           <div className="container-custom">
             <div className="mb-6 md:mb-8">
-              <h1 className="text-2xl md:text-3xl font-bold mb-2">🏡 Cabanas Aconchegantes</h1>
+              <h1 className="text-2xl md:text-3xl font-bold mb-2">{t('pages.cabanasTitle')}</h1>
               <p className="text-muted-foreground text-sm md:text-base">
-                Cabanas aconchegantes perfeitas para uma experiência rústica e confortável
+                {t('pages.cabanasDescription')}
               </p>
             </div>
             

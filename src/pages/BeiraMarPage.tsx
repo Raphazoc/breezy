@@ -4,13 +4,12 @@ import Header from "@/components/Header";
 import PropertyFilters from "@/components/PropertyFilters";
 import PropertyCard from "@/components/PropertyCard";
 import Footer from "@/components/Footer";
-import { properties } from "@/data/properties";
+import { beiraMarProperties } from "@/data/categoryProperties";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const BeiraMarPage = () => {
   const [activeFilter, setActiveFilter] = useState<string | null>("beira-mar");
-  
-  // Filtra propriedades relacionadas à beira-mar
-  const beiraMarProperties = properties.filter((_, index) => index % 3 === 0);
+  const { t } = useTranslation();
 
   const handleFilterChange = (filter: string) => {
     setActiveFilter(filter);
@@ -25,9 +24,9 @@ const BeiraMarPage = () => {
         <section className="py-6 md:py-12">
           <div className="container-custom">
             <div className="mb-6 md:mb-8">
-              <h1 className="text-2xl md:text-3xl font-bold mb-2">🏖️ Propriedades Beira-mar</h1>
+              <h1 className="text-2xl md:text-3xl font-bold mb-2">{t('pages.beiraMarTitle')}</h1>
               <p className="text-muted-foreground text-sm md:text-base">
-                Acomodações à beira-mar com fácil acesso às praias mais bonitas do Brasil
+                {t('pages.beiraMarDescription')}
               </p>
             </div>
             
