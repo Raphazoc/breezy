@@ -6,9 +6,11 @@ import PropertyCard from "@/components/PropertyCard";
 import FeaturedDestinations from "@/components/FeaturedDestinations";
 import Footer from "@/components/Footer";
 import { properties } from "@/data/properties";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const Index = () => {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const handleFilterChange = (filter: string) => {
     setActiveFilter(filter);
@@ -22,7 +24,7 @@ const Index = () => {
       
       <main className="flex-grow">
         <section className="py-6">
-          <div className="container-custom">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-6">
               <h2 className="text-2xl font-bold mb-2">Propriedades em destaque</h2>
               <p className="text-muted-foreground">
@@ -40,7 +42,7 @@ const Index = () => {
         <FeaturedDestinations />
         
         <section className="py-8 bg-airbnb-light dark:bg-gray-800">
-          <div className="container-custom">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-background shadow-xl rounded-xl overflow-hidden">
               <div className="md:flex">
                 <div className="md:w-1/2">

@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import { Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ThemeToggle = () => {
@@ -29,46 +30,31 @@ const ThemeToggle = () => {
       variant="ghost" 
       size="icon" 
       onClick={toggleTheme}
-      className="relative overflow-hidden rounded-full w-10 h-10 hover:bg-muted transition-all duration-300 group"
+      className="relative h-9 w-9 rounded-md border-2 border-transparent hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 group overflow-hidden"
     >
-      <div className="relative w-6 h-6">
+      <div className="relative w-5 h-5">
         {/* Sun Icon */}
-        <div className={`absolute inset-0 transform transition-all duration-500 ${
+        <Sun className={`absolute inset-0 h-5 w-5 transition-all duration-500 ${
           theme === 'light' 
-            ? 'scale-100 rotate-0 opacity-100' 
-            : 'scale-0 rotate-180 opacity-0'
-        }`}>
-          <div className="w-full h-full relative">
-            {/* Sun center */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full"></div>
-            {/* Sun rays */}
-            <div className="absolute top-0 left-1/2 w-0.5 h-1.5 bg-yellow-500 transform -translate-x-1/2"></div>
-            <div className="absolute bottom-0 left-1/2 w-0.5 h-1.5 bg-yellow-500 transform -translate-x-1/2"></div>
-            <div className="absolute top-1/2 left-0 w-1.5 h-0.5 bg-yellow-500 transform -translate-y-1/2"></div>
-            <div className="absolute top-1/2 right-0 w-1.5 h-0.5 bg-yellow-500 transform -translate-y-1/2"></div>
-            <div className="absolute top-1 right-1 w-0.5 h-1 bg-yellow-500 transform rotate-45"></div>
-            <div className="absolute top-1 left-1 w-0.5 h-1 bg-yellow-500 transform -rotate-45"></div>
-            <div className="absolute bottom-1 right-1 w-0.5 h-1 bg-yellow-500 transform -rotate-45"></div>
-            <div className="absolute bottom-1 left-1 w-0.5 h-1 bg-yellow-500 transform rotate-45"></div>
-          </div>
-        </div>
+            ? 'rotate-0 scale-100 opacity-100 text-yellow-500' 
+            : 'rotate-90 scale-0 opacity-0'
+        }`} />
         
         {/* Moon Icon */}
-        <div className={`absolute inset-0 transform transition-all duration-500 ${
+        <Moon className={`absolute inset-0 h-5 w-5 transition-all duration-500 ${
           theme === 'dark' 
-            ? 'scale-100 rotate-0 opacity-100' 
-            : 'scale-0 -rotate-180 opacity-0'
-        }`}>
-          <div className="w-full h-full relative">
-            <div className="w-5 h-5 bg-slate-300 rounded-full relative overflow-hidden">
-              <div className="absolute top-1 right-1 w-4 h-4 bg-slate-800 rounded-full"></div>
-            </div>
-            {/* Stars */}
-            <div className="absolute top-1 left-1 w-0.5 h-0.5 bg-slate-300 rounded-full"></div>
-            <div className="absolute bottom-2 right-1 w-0.5 h-0.5 bg-slate-300 rounded-full"></div>
-          </div>
-        </div>
+            ? 'rotate-0 scale-100 opacity-100 text-blue-400' 
+            : '-rotate-90 scale-0 opacity-0'
+        }`} />
       </div>
+      
+      {/* Background animation */}
+      <div className={`absolute inset-0 rounded-md transition-all duration-300 ${
+        theme === 'light' 
+          ? 'bg-gradient-to-br from-yellow-100 to-orange-100 opacity-0 group-hover:opacity-100' 
+          : 'bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 opacity-0 group-hover:opacity-100'
+      }`} />
+      
       <span className="sr-only">Alternar tema</span>
     </Button>
   );

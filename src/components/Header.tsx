@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Search, Menu, User, Globe } from "lucide-react";
+import { Search, Menu, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -18,7 +18,7 @@ import { useTranslation } from "@/hooks/useTranslation";
 
 const Header = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [authMode, setAuthMode] = useState<"login" | "register">("login");
+  const [authReason, setAuthReason] = useState<"general" | "hostListing">("general");
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -30,16 +30,16 @@ const Header = () => {
     }
   };
 
-  const openAuthModal = (mode: "login" | "register") => {
-    setAuthMode(mode);
+  const openAuthModal = (reason: "general" | "hostListing" = "general") => {
+    setAuthReason(reason);
     setIsAuthModalOpen(true);
   };
 
   return (
     <>
       <header className="bg-background border-b sticky top-0 z-40 shadow-sm">
-        <div className="container-custom">
-          <div className="flex items-center justify-between h-[60px] md:h-[53px]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-gradient-to-r from-pink-500 to-red-500 rounded-lg flex items-center justify-center">
@@ -51,36 +51,22 @@ const Header = () => {
             </Link>
 
             {/* Search Bar - Desktop */}
-            <div className="hidden md:flex items-center">
-              <form onSubmit={handleSearch} className="flex items-center">
-                <div className="flex items-center border border-gray-300 rounded-full shadow-sm hover:shadow-md transition-shadow">
+            <div className="hidden md:flex items-center flex-1 max-w-md mx-8">
+              <form onSubmit={handleSearch} className="w-full">
+                <div className="relative">
+                  <Input
+                    type="text"
+                    placeholder="Busque destinos, propriedades..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full pl-4 pr-12 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-airbnb-primary focus:border-transparent shadow-sm hover:shadow-md transition-shadow"
+                  />
                   <button
-                    type="button"
-                    className="px-4 py-2 text-sm font-medium text-foreground hover:bg-gray-50 dark:hover:bg-gray-800 rounded-l-full border-r border-gray-300"
+                    type="submit"
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-airbnb-primary text-white p-2 rounded-full hover:bg-red-600 transition-colors"
                   >
-                    {t('navigation.anywhere')}
+                    <Search className="h-4 w-4" />
                   </button>
-                  <button
-                    type="button"
-                    className="px-4 py-2 text-sm font-medium text-foreground hover:bg-gray-50 dark:hover:bg-gray-800 border-r border-gray-300"
-                  >
-                    {t('navigation.anyWeek')}
-                  </button>
-                  <div className="flex items-center">
-                    <Input
-                      type="text"
-                      placeholder={t('navigation.addGuests')}
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="border-0 focus-visible:ring-0 text-sm text-muted-foreground bg-transparent placeholder:text-muted-foreground px-4 py-2 w-32"
-                    />
-                    <button
-                      type="submit"
-                      className="bg-airbnb-primary text-white p-2 rounded-full mr-2 hover:bg-red-600 transition-colors"
-                    >
-                      <Search className="h-4 w-4" />
-                    </button>
-                  </div>
                 </div>
               </form>
             </div>
@@ -114,18 +100,18 @@ const Header = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48">
-                  <DropdownMenuItem onClick={() => openAuthModal("register")}>
+                  <DropdownMenuItem onClick={() => openAuthModal("general")}>
                     Cadastre-se
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => openAuthModal("login")}>
+                  <DropdownMenuItem onClick={() => openAuthModal("general")}>
                     Entrar
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem asChild>
-                    <Link to="/host">Anuncie seu espaço no HospedaBem</Link>
+                  <DropdownMenuItem onClick={() => openAuthModal("hostListing")}>
+                    Anuncie seu espaço no HospedaBem
                   </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link to="/host">Hospede uma experiência</Link>
+                  <DropdownMenuItem onClick={() => openAuthModal("hostListing")}>
+                    Hospede uma experiência
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <Link to="/help">Central de Ajuda</Link>
@@ -140,8 +126,7 @@ const Header = () => {
       <AuthModal 
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
-        mode={authMode}
-        onModeChange={setAuthMode}
+        reason={authReason}
       />
     </>
   );
