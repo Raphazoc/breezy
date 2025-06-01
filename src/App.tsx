@@ -14,6 +14,9 @@ import Profile from "./pages/Profile";
 import CategoryPage from "./pages/CategoryPage";
 import SearchResults from "./pages/SearchResults";
 import FiltersPage from "./pages/FiltersPage";
+import BeiraMarPage from "./pages/BeiraMarPage";
+import CabanasPage from "./pages/CabanasPage";
+import CampoPage from "./pages/CampoPage";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +50,9 @@ const App = () => {
             <Route path="/category/:categoryId" element={<CategoryPage />} />
             <Route path="/search" element={<SearchResults />} />
             <Route path="/filters" element={<FiltersPage />} />
+            <Route path="/beira-mar" element={<BeiraMarPage />} />
+            <Route path="/cabanas" element={<CabanasPage />} />
+            <Route path="/campo" element={<CampoPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

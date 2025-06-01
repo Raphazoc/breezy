@@ -5,30 +5,17 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Map from "@/components/Map";
 import { properties } from "@/data/properties";
-
-// Define property type to match the properties array structure
-interface Property {
-  id: number;
-  name: string;
-  location: string;
-  price: number;
-  imageUrl: string;
-  categoryName?: string;
-  guests?: number;
-  rooms?: number;
-  description?: string;
-}
+import { PropertyProps } from "@/components/PropertyCard";
 
 const PropertyDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const [property, setProperty] = useState<Property | null>(null);
+  const [property, setProperty] = useState<PropertyProps | null>(null);
 
   useEffect(() => {
-    // Find the property by ID (converting param string to number)
-    const foundProperty = properties.find(p => p.id === Number(id));
+    const foundProperty = properties.find(p => p.id === id);
     
     if (foundProperty) {
-      setProperty(foundProperty as Property);
+      setProperty(foundProperty);
     }
   }, [id]);
 
@@ -53,29 +40,29 @@ const PropertyDetail = () => {
       <main className="flex-grow py-6">
         <div className="container-custom">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold mb-2">{property.name}</h1>
+            <h1 className="text-2xl md:text-3xl font-bold mb-2">{property.title}</h1>
             <p className="text-gray-600 dark:text-gray-400">{property.location}</p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-            <div>
-              <div className="rounded-xl overflow-hidden mb-6 aspect-video">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 mb-8">
+            <div className="space-y-4 md:space-y-6">
+              <div className="rounded-xl overflow-hidden aspect-video">
                 <img 
-                  src={property.imageUrl} 
-                  alt={property.name}
+                  src={property.images[0]} 
+                  alt={property.title}
                   className="w-full h-full object-cover"
                 />
               </div>
               
-              <div className="bg-background border rounded-xl p-6 mb-6">
-                <div className="flex items-center justify-between mb-6">
+              <div className="bg-background border rounded-xl p-4 md:p-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 md:mb-6 gap-4">
                   <div>
-                    <h2 className="text-2xl font-bold">R$ {property.price}/noite</h2>
-                    <p className="text-muted-foreground">{property.categoryName}</p>
+                    <h2 className="text-xl md:text-2xl font-bold">R$ {property.price}/noite</h2>
+                    <p className="text-muted-foreground">{property.dates}</p>
                   </div>
-                  <div className="text-right">
-                    <p className="font-medium">{property.guests} hóspedes</p>
-                    <p className="text-muted-foreground">{property.rooms} quartos</p>
+                  <div className="text-left sm:text-right">
+                    <p className="font-medium">★ {property.rating}</p>
+                    <p className="text-muted-foreground">({property.reviewCount} avaliações)</p>
                   </div>
                 </div>
                 
@@ -84,13 +71,16 @@ const PropertyDetail = () => {
                 </button>
               </div>
               
-              <div className="bg-background border rounded-xl p-6">
-                <h3 className="text-xl font-bold mb-4">Descrição</h3>
-                <p className="text-foreground">{property.description}</p>
+              <div className="bg-background border rounded-xl p-4 md:p-6">
+                <h3 className="text-lg md:text-xl font-bold mb-4">Sobre este local</h3>
+                <p className="text-foreground leading-relaxed">
+                  {property.host}. Esta propriedade oferece uma experiência única com localização privilegiada em {property.location}. 
+                  Perfeita para relaxar e desfrutar de momentos especiais com conforto e comodidade.
+                </p>
               </div>
             </div>
             
-            <div className="h-[400px] lg:h-full rounded-xl overflow-hidden">
+            <div className="h-[300px] md:h-[400px] lg:h-full rounded-xl overflow-hidden">
               <Map />
             </div>
           </div>
