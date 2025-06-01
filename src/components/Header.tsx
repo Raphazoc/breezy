@@ -13,7 +13,6 @@ import {
 import { Input } from "@/components/ui/input";
 import AuthModal from "./AuthModal";
 import ThemeToggle from "./ThemeToggle";
-import LanguageToggle from "./LanguageToggle";
 import { useTranslation } from "@/hooks/useTranslation";
 
 const Header = () => {
@@ -59,14 +58,8 @@ const Header = () => {
                     placeholder="Busque destinos, propriedades..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-4 pr-12 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-airbnb-primary focus:border-transparent shadow-sm hover:shadow-md transition-shadow"
+                    className="w-full pl-4 pr-4 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-airbnb-primary focus:border-transparent shadow-sm hover:shadow-md transition-shadow"
                   />
-                  <button
-                    type="submit"
-                    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-airbnb-primary text-white p-2 rounded-full hover:bg-red-600 transition-colors"
-                  >
-                    <Search className="h-4 w-4" />
-                  </button>
                 </div>
               </form>
             </div>
@@ -74,7 +67,6 @@ const Header = () => {
             {/* Right side actions */}
             <div className="flex items-center space-x-2">
               <ThemeToggle />
-              <LanguageToggle />
               
               {/* Mobile Search */}
               <Button
