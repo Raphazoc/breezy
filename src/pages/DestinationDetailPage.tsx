@@ -22,10 +22,15 @@ interface DestinationDetail {
   attractions: Attraction[];
 }
 
+// COMO ALTERAR IMAGENS DAS PÁGINAS DE DESTINOS:
+// Para alterar as imagens principais (hero) de cada destino, substitua as URLs na propriedade 'image' 
+// do objeto correspondente no 'destinationsData' abaixo
+// Recomenda-se usar imagens panorâmicas de alta qualidade (1920px de largura ou mais)
 const destinationsData: Record<string, DestinationDetail> = {
   "new-york": {
     id: "new-york",
     name: "New York",
+    // IMAGEM PRINCIPAL DE NEW YORK: substitua esta URL pela imagem de hero de Nova York
     image: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1000",
     description: "A cidade que nunca dorme, com arranha-céus icônicos e cultura vibrante.",
     distance: "4.5 hour drive",
@@ -41,6 +46,7 @@ const destinationsData: Record<string, DestinationDetail> = {
   "los-angeles": {
     id: "los-angeles",
     name: "Los Angeles",
+    // IMAGEM PRINCIPAL DE LOS ANGELES: substitua esta URL pela imagem de hero de Los Angeles
     image: "https://images.unsplash.com/photo-1605142859862-978be7eba909?q=80&w=1000",
     description: "Cidade dos anjos, lar de Hollywood e praias deslumbrantes.",
     distance: "5 hour drive",
@@ -56,6 +62,7 @@ const destinationsData: Record<string, DestinationDetail> = {
   "miami": {
     id: "miami",
     name: "Miami",
+    // IMAGEM PRINCIPAL DE MIAMI: substitua esta URL pela imagem de hero de Miami
     image: "https://images.unsplash.com/photo-1506966953602-c20cc11f75e3?q=80&w=1000",
     description: "Praias tropicais, vida noturna agitada e arquitetura art déco.",
     distance: "3 hour drive",
@@ -71,6 +78,7 @@ const destinationsData: Record<string, DestinationDetail> = {
   "chicago": {
     id: "chicago",
     name: "Chicago",
+    // IMAGEM PRINCIPAL DE CHICAGO: substitua esta URL pela imagem de hero de Chicago
     image: "https://images.unsplash.com/photo-1494522855154-9297ac14b55f?q=80&w=1000",
     description: "Arquitetura impressionante e culinária de classe mundial.",
     distance: "4 hour drive",
@@ -86,6 +94,7 @@ const destinationsData: Record<string, DestinationDetail> = {
   "san-francisco": {
     id: "san-francisco",
     name: "San Francisco",
+    // IMAGEM PRINCIPAL DE SAN FRANCISCO: substitua esta URL pela imagem de hero de San Francisco
     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1000",
     description: "Colinas famosas, Golden Gate Bridge e cultura tecnológica.",
     distance: "6 hour drive",
@@ -101,6 +110,7 @@ const destinationsData: Record<string, DestinationDetail> = {
   "las-vegas": {
     id: "las-vegas",
     name: "Las Vegas",
+    // IMAGEM PRINCIPAL DE LAS VEGAS: substitua esta URL pela imagem de hero de Las Vegas
     image: "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?q=80&w=1000",
     description: "Cassinos, shows espetaculares e entretenimento 24 horas.",
     distance: "4 hour drive",
@@ -116,6 +126,7 @@ const destinationsData: Record<string, DestinationDetail> = {
   "seattle": {
     id: "seattle",
     name: "Seattle",
+    // IMAGEM PRINCIPAL DE SEATTLE: substitua esta URL pela imagem de hero de Seattle
     image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1000",
     description: "Café artesanal, música grunge e paisagens naturais deslumbrantes.",
     distance: "7 hour drive",
@@ -131,6 +142,7 @@ const destinationsData: Record<string, DestinationDetail> = {
   "boston": {
     id: "boston",
     name: "Boston",
+    // IMAGEM PRINCIPAL DE BOSTON: substitua esta URL pela imagem de hero de Boston
     image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1000",
     description: "História americana, universidades prestigiosas e charme colonial.",
     distance: "5 hour drive",
@@ -146,6 +158,7 @@ const destinationsData: Record<string, DestinationDetail> = {
   "rio-de-janeiro": {
     id: "rio-de-janeiro",
     name: "Rio de Janeiro",
+    // IMAGEM PRINCIPAL DO RIO DE JANEIRO: substitua esta URL pela imagem de hero do Rio
     image: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=1000",
     description: "Cidade maravilhosa com praias famosas e Cristo Redentor.",
     distance: "2 hour flight",
@@ -161,6 +174,7 @@ const destinationsData: Record<string, DestinationDetail> = {
   "sao-paulo": {
     id: "sao-paulo",
     name: "São Paulo",
+    // IMAGEM PRINCIPAL DE SÃO PAULO: substitua esta URL pela imagem de hero de São Paulo
     image: "https://images.unsplash.com/photo-1541372709072-8be11c6a4e0c?q=80&w=1000",
     description: "Metrópole vibrante com gastronomia diversificada e vida cultural intensa.",
     distance: "1 hour flight",
@@ -215,8 +229,9 @@ const DestinationDetailPage = () => {
       <Header />
       
       <main className="flex-grow">
-        {/* Hero Section */}
+        {/* SEÇÃO HERO: Esta é onde a imagem principal do destino é exibida */}
         <section className="relative h-96 overflow-hidden">
+          {/* IMAGEM HERO: A imagem de fundo principal da página do destino */}
           <img 
             src={destination.image} 
             alt={destination.name}
@@ -231,7 +246,7 @@ const DestinationDetailPage = () => {
           </div>
         </section>
 
-        {/* Attractions Section */}
+        {/* SEÇÃO DE ATRAÇÕES: Cards com informações sobre pontos turísticos */}
         <section className="py-12">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-8">
@@ -245,6 +260,7 @@ const DestinationDetailPage = () => {
               </p>
             </div>
             
+            {/* GRID DE ATRAÇÕES: Lista de pontos turísticos, comidas e atividades */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {destination.attractions.map((attraction) => (
                 <Card key={attraction.id} className="hover:shadow-lg transition-shadow">

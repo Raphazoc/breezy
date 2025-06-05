@@ -12,10 +12,15 @@ interface Destination {
   slug: string;
 }
 
+// COMO ALTERAR IMAGENS DOS DESTINOS:
+// Para alterar as imagens dos destinos, substitua as URLs no array 'allDestinations' abaixo
+// Cada destino tem uma propriedade 'image' que deve conter uma URL válida de imagem
+// Recomenda-se usar imagens de alta qualidade (1000px de largura ou mais) do Unsplash ou similar
 const allDestinations: Destination[] = [
   {
     id: "1",
     name: "New York",
+    // IMAGEM DE NEW YORK: substitua esta URL por uma nova imagem de Nova York
     image: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1000",
     distance: "4.5 hour drive",
     description: "A cidade que nunca dorme, com arranha-céus icônicos e cultura vibrante.",
@@ -24,6 +29,7 @@ const allDestinations: Destination[] = [
   {
     id: "2",
     name: "Los Angeles",
+    // IMAGEM DE LOS ANGELES: substitua esta URL por uma nova imagem de Los Angeles
     image: "https://images.unsplash.com/photo-1605142859862-978be7eba909?q=80&w=1000",
     distance: "5 hour drive",
     description: "Cidade dos anjos, lar de Hollywood e praias deslumbrantes.",
@@ -32,6 +38,7 @@ const allDestinations: Destination[] = [
   {
     id: "3",
     name: "Miami",
+    // IMAGEM DE MIAMI: substitua esta URL por uma nova imagem de Miami
     image: "https://images.unsplash.com/photo-1506966953602-c20cc11f75e3?q=80&w=1000",
     distance: "3 hour drive",
     description: "Praias tropicais, vida noturna agitada e arquitetura art déco.",
@@ -40,6 +47,7 @@ const allDestinations: Destination[] = [
   {
     id: "4",
     name: "Chicago",
+    // IMAGEM DE CHICAGO: substitua esta URL por uma nova imagem de Chicago
     image: "https://images.unsplash.com/photo-1494522855154-9297ac14b55f?q=80&w=1000",
     distance: "4 hour drive",
     description: "Arquitetura impressionante e culinária de classe mundial.",
@@ -48,6 +56,7 @@ const allDestinations: Destination[] = [
   {
     id: "5",
     name: "San Francisco",
+    // IMAGEM DE SAN FRANCISCO: substitua esta URL por uma nova imagem de San Francisco
     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1000",
     distance: "6 hour drive",
     description: "Colinas famosas, Golden Gate Bridge e cultura tecnológica.",
@@ -56,6 +65,7 @@ const allDestinations: Destination[] = [
   {
     id: "6",
     name: "Las Vegas",
+    // IMAGEM DE LAS VEGAS: substitua esta URL por uma nova imagem de Las Vegas
     image: "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?q=80&w=1000",
     distance: "4 hour drive",
     description: "Cassinos, shows espetaculares e entretenimento 24 horas.",
@@ -64,6 +74,7 @@ const allDestinations: Destination[] = [
   {
     id: "7",
     name: "Seattle",
+    // IMAGEM DE SEATTLE: substitua esta URL por uma nova imagem de Seattle
     image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1000",
     distance: "7 hour drive",
     description: "Café artesanal, música grunge e paisagens naturais deslumbrantes.",
@@ -72,6 +83,7 @@ const allDestinations: Destination[] = [
   {
     id: "8",
     name: "Boston",
+    // IMAGEM DE BOSTON: substitua esta URL por uma nova imagem de Boston
     image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1000",
     distance: "5 hour drive",
     description: "História americana, universidades prestigiosas e charme colonial.",
@@ -80,6 +92,7 @@ const allDestinations: Destination[] = [
   {
     id: "9",
     name: "Rio de Janeiro",
+    // IMAGEM DO RIO DE JANEIRO: substitua esta URL por uma nova imagem do Rio de Janeiro
     image: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=1000",
     distance: "2 hour flight",
     description: "Cidade maravilhosa com praias famosas e Cristo Redentor.",
@@ -88,6 +101,7 @@ const allDestinations: Destination[] = [
   {
     id: "10",
     name: "São Paulo",
+    // IMAGEM DE SÃO PAULO: substitua esta URL por uma nova imagem de São Paulo
     image: "https://images.unsplash.com/photo-1541372709072-8be11c6a4e0c?q=80&w=1000",
     distance: "1 hour flight",
     description: "Metrópole vibrante com gastronomia diversificada e vida cultural intensa.",
@@ -110,6 +124,7 @@ const DestinationsPage = () => {
               </p>
             </div>
             
+            {/* GRID DE DESTINOS: As imagens são exibidas aqui em cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {allDestinations.map((destination) => (
                 <Link 
@@ -119,6 +134,7 @@ const DestinationsPage = () => {
                 >
                   <div className="bg-background rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
                     <div className="overflow-hidden">
+                      {/* IMAGEM DO CARD: Esta é onde a imagem de cada destino é exibida */}
                       <img 
                         src={destination.image} 
                         alt={destination.name}
