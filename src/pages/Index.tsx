@@ -5,16 +5,22 @@ import PropertyFilters from "@/components/PropertyFilters";
 import PropertyCard from "@/components/PropertyCard";
 import FeaturedDestinations from "@/components/FeaturedDestinations";
 import Footer from "@/components/Footer";
+import AuthModal from "@/components/AuthModal";
 import { properties } from "@/data/properties";
 import { useTranslation } from "@/hooks/useTranslation";
 
 const Index = () => {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const { t } = useTranslation();
 
   const handleFilterChange = (filter: string) => {
     setActiveFilter(filter);
     // In a real application, this would filter the properties based on the selected category
+  };
+
+  const handleSaibaMaisClick = () => {
+    setIsAuthModalOpen(true);
   };
 
   return (
@@ -57,7 +63,10 @@ const Index = () => {
                   <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
                     Você poderia ganhar até R$5.000/mês compartilhando seu espaço em São Paulo.
                   </p>
-                  <button className="bg-gradient-to-r from-pink-500 to-airbnb-primary text-white font-medium py-3 px-6 rounded-lg hover:from-pink-600 hover:to-red-600 transition-all w-max">
+                  <button 
+                    onClick={handleSaibaMaisClick}
+                    className="bg-gradient-to-r from-pink-500 to-airbnb-primary text-white font-medium py-3 px-6 rounded-lg hover:from-pink-600 hover:to-red-600 transition-all w-max"
+                  >
                     Saiba mais
                   </button>
                 </div>
@@ -68,6 +77,12 @@ const Index = () => {
       </main>
       
       <Footer />
+      
+      <AuthModal 
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        reason="hostListing"
+      />
     </div>
   );
 };
