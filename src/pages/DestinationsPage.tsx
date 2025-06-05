@@ -9,6 +9,7 @@ interface Destination {
   image: string;
   distance: string;
   description?: string;
+  slug: string;
 }
 
 const allDestinations: Destination[] = [
@@ -17,70 +18,80 @@ const allDestinations: Destination[] = [
     name: "New York",
     image: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1000",
     distance: "4.5 hour drive",
-    description: "A cidade que nunca dorme, com arranha-céus icônicos e cultura vibrante."
+    description: "A cidade que nunca dorme, com arranha-céus icônicos e cultura vibrante.",
+    slug: "new-york"
   },
   {
     id: "2",
     name: "Los Angeles",
     image: "https://images.unsplash.com/photo-1605142859862-978be7eba909?q=80&w=1000",
     distance: "5 hour drive",
-    description: "Cidade dos anjos, lar de Hollywood e praias deslumbrantes."
+    description: "Cidade dos anjos, lar de Hollywood e praias deslumbrantes.",
+    slug: "los-angeles"
   },
   {
     id: "3",
     name: "Miami",
     image: "https://images.unsplash.com/photo-1506966953602-c20cc11f75e3?q=80&w=1000",
     distance: "3 hour drive",
-    description: "Praias tropicais, vida noturna agitada e arquitetura art déco."
+    description: "Praias tropicais, vida noturna agitada e arquitetura art déco.",
+    slug: "miami"
   },
   {
     id: "4",
     name: "Chicago",
     image: "https://images.unsplash.com/photo-1494522855154-9297ac14b55f?q=80&w=1000",
     distance: "4 hour drive",
-    description: "Arquitetura impressionante e culinária de classe mundial."
+    description: "Arquitetura impressionante e culinária de classe mundial.",
+    slug: "chicago"
   },
   {
     id: "5",
     name: "San Francisco",
     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1000",
     distance: "6 hour drive",
-    description: "Colinas famosas, Golden Gate Bridge e cultura tecnológica."
+    description: "Colinas famosas, Golden Gate Bridge e cultura tecnológica.",
+    slug: "san-francisco"
   },
   {
     id: "6",
     name: "Las Vegas",
     image: "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?q=80&w=1000",
     distance: "4 hour drive",
-    description: "Cassinos, shows espetaculares e entretenimento 24 horas."
+    description: "Cassinos, shows espetaculares e entretenimento 24 horas.",
+    slug: "las-vegas"
   },
   {
     id: "7",
     name: "Seattle",
     image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1000",
     distance: "7 hour drive",
-    description: "Café artesanal, música grunge e paisagens naturais deslumbrantes."
+    description: "Café artesanal, música grunge e paisagens naturais deslumbrantes.",
+    slug: "seattle"
   },
   {
     id: "8",
     name: "Boston",
     image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1000",
     distance: "5 hour drive",
-    description: "História americana, universidades prestigiosas e charme colonial."
+    description: "História americana, universidades prestigiosas e charme colonial.",
+    slug: "boston"
   },
   {
     id: "9",
     name: "Rio de Janeiro",
     image: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=1000",
     distance: "2 hour flight",
-    description: "Cidade maravilhosa com praias famosas e Cristo Redentor."
+    description: "Cidade maravilhosa com praias famosas e Cristo Redentor.",
+    slug: "rio-de-janeiro"
   },
   {
     id: "10",
     name: "São Paulo",
     image: "https://images.unsplash.com/photo-1541372709072-8be11c6a4e0c?q=80&w=1000",
     distance: "1 hour flight",
-    description: "Metrópole vibrante com gastronomia diversificada e vida cultural intensa."
+    description: "Metrópole vibrante com gastronomia diversificada e vida cultural intensa.",
+    slug: "sao-paulo"
   }
 ];
 
@@ -103,7 +114,7 @@ const DestinationsPage = () => {
               {allDestinations.map((destination) => (
                 <Link 
                   key={destination.id} 
-                  to={`/search?location=${encodeURIComponent(destination.name)}`}
+                  to={`/destination/${destination.slug}`}
                   className="group"
                 >
                   <div className="bg-background rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
