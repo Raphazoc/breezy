@@ -42,8 +42,8 @@ const FeaturedDestinations = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-semibold">Inspiration for your next trip</h2>
-          <Button variant="link" className="text-airbnb-primary font-medium">
-            See all
+          <Button variant="link" className="text-airbnb-primary font-medium" asChild>
+            <Link to="/destinations">See all</Link>
           </Button>
         </div>
         
@@ -51,7 +51,7 @@ const FeaturedDestinations = () => {
           {destinations.map((destination) => (
             <Link 
               key={destination.id} 
-              to={`/s?location=${destination.name}`}
+              to={`/search?location=${destination.name}`}
               className="group"
             >
               <div className="overflow-hidden rounded-lg">

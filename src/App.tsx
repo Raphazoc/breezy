@@ -17,6 +17,7 @@ import FiltersPage from "./pages/FiltersPage";
 import BeiraMarPage from "./pages/BeiraMarPage";
 import CabanasPage from "./pages/CabanasPage";
 import CampoPage from "./pages/CampoPage";
+import DestinationsPage from "./pages/DestinationsPage";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,7 @@ const App = () => {
             <Route path="/beira-mar" element={<BeiraMarPage />} />
             <Route path="/cabanas" element={<CabanasPage />} />
             <Route path="/campo" element={<CampoPage />} />
+            <Route path="/destinations" element={<DestinationsPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
