@@ -39,7 +39,7 @@ const destinations: Destination[] = [
 const FeaturedDestinations = () => {
   return (
     <section className="py-12">
-      <div className="container-custom">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-semibold">Inspiration for your next trip</h2>
           <Button variant="link" className="text-airbnb-primary font-medium" asChild>

@@ -67,6 +67,20 @@ const allDestinations: Destination[] = [
     image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1000",
     distance: "5 hour drive",
     description: "História americana, universidades prestigiosas e charme colonial."
+  },
+  {
+    id: "9",
+    name: "Rio de Janeiro",
+    image: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=1000",
+    distance: "2 hour flight",
+    description: "Cidade maravilhosa com praias famosas e Cristo Redentor."
+  },
+  {
+    id: "10",
+    name: "São Paulo",
+    image: "https://images.unsplash.com/photo-1541372709072-8be11c6a4e0c?q=80&w=1000",
+    distance: "1 hour flight",
+    description: "Metrópole vibrante com gastronomia diversificada e vida cultural intensa."
   }
 ];
 
@@ -89,7 +103,7 @@ const DestinationsPage = () => {
               {allDestinations.map((destination) => (
                 <Link 
                   key={destination.id} 
-                  to={`/search?location=${destination.name}`}
+                  to={`/search?location=${encodeURIComponent(destination.name)}`}
                   className="group"
                 >
                   <div className="bg-background rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
